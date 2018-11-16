@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FBLoginKotlinSample</string>
+    <string name="facebook_app_id">194050811513431</string>
+    <string name="fb_login_protocol_scheme">fb194050811513431</string>
+    <string name="title_activity_ez_info">EzInfo</string>
+    <string name="title_activity_main_tab">MainTabActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
