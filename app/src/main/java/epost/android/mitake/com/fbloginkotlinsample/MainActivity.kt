@@ -31,17 +31,21 @@ class MainActivity : AppCompatActivity() {
         FacebookSdk.sdkInitialize(getApplicationContext())
         AppEventsLogger.activateApp(this)
 
-
-        accToken = AccessToken.getCurrentAccessToken()
-
         callbackManager = CallbackManager.Factory.create()
 
         datebase = FirebaseDatabase.getInstance()
 
-        if (accToken != null && !accToken.isExpired) {
-            Log.d("****", "is Login")
-            getInfo(accToken)
-        } else {
+
+        try {
+            accToken = AccessToken.getCurrentAccessToken()
+
+            if (accToken != null && !accToken.isExpired) {
+                Log.d("****", "is Login")
+                getInfo(accToken)
+            } else {
+                callFBManager()
+            }
+        } catch (e: java.lang.Exception) {
             callFBManager()
         }
 
@@ -78,7 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAccount() {
         try {
-            ref = datebase?.getReference("accounts/" + Account.id + "/userInfo")
+            var reference = "accounts/" + Account.id.get() + "/userInfo"
+            ref = datebase?.getReference(reference)
             ref?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     Log.d("****", p0.toString())
@@ -97,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         } catch (e: Exception) {
+            Log.d("*****", e.toString())
             doUpdate()
         }
 
@@ -106,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         ref = datebase?.getReference("accounts")
 
         var map = HashMap<String, Account>()
-        map.put(Account.id, Account.account)
+        map.put(Account.id.get()!!, Account.account)
 
         ref?.updateChildren(
             map as Map<String, Any>,

@@ -1,6 +1,8 @@
 package epost.android.mitake.com.fbloginkotlinsample.fragment
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.databinding.DataBindingUtil
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,12 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import epost.android.mitake.com.fbloginkotlinsample.R
+import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileEditViewModel
 import epost.android.mitake.com.kotlinsample.Account
-import kotlinx.android.synthetic.main.fragment_profile_edit.view.*
 import java.util.*
 
 
@@ -40,6 +41,9 @@ class ProfileEditFragment : Fragment() {
     var mDataRef: DatabaseReference? = null
     lateinit var currView: View
 
+    lateinit var viewModel: ProfileEditViewModel
+    lateinit var binding: FragmentProfileEditBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -52,80 +56,65 @@ class ProfileEditFragment : Fragment() {
 
     private fun initDatabase() {
         datebase = FirebaseDatabase.getInstance()
-        mDataRef = datebase?.getReference("accounts/" + Account.id + "/userInfo")
+        mDataRef = datebase?.getReference("accounts/" + Account.id.get() + "/userInfo")
 
 
-//        mDataRef?.addValueEventListener(object : ValueEventListener {
-//            override fun onCancelled(p0: DatabaseError) {
-//            }
-//
-//            override fun onDataChange(p0: DataSnapshot) {
-//                Log.d("****", p0.getValue().toString())
-//                Account.account.userInfo = p0.getValue(Info::class.java)!!
-//                Log.d("****", Account.account.userInfo.name)
-//            }
-//
-//        })
+        mDataRef?.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                viewModel.updateInfo(p0)
+
+            }
+
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        currView = inflater.inflate(R.layout.fragment_profile_edit, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_edit, container, false)
 
-        currView.tv_id.text = Account.id
-        currView.edt_name.setText(Account.account.userInfo.name)
-        currView.edt_bir.setText(Account.account.userInfo.birthday)
-        currView.edt_address.setText(Account.account.userInfo.address)
+        viewModel = ViewModelProviders.of(this).get(ProfileEditViewModel::class.java)
 
-        setViewFocus(false)
+        viewModel.info = Account.account.userInfo
 
-        currView.btn_confirm.setOnClickListener {
-            if (currView.btn_confirm.text.equals("編輯")) {
-                setViewFocus(true)
-            } else {
-                doUpdate()
-            }
-        }
+        binding.btnConfirm.setOnClickListener { if (binding.btnConfirm.text.equals("編輯")) setViewFocus(true) else doUpdate() }
 
-        return currView
+        binding.model = viewModel
+
+        return binding.root
     }
 
     private fun setViewFocus(state: Boolean) {
-        currView.edt_name.isFocusable = state
-        currView.edt_name.isFocusableInTouchMode = state
-        currView.edt_bir.isFocusable = state
-        currView.edt_bir.isFocusableInTouchMode = state
-        currView.edt_address.isFocusable = state
-        currView.edt_address.isFocusableInTouchMode = state
+        binding.edtName.isFocusable = state
+        binding.edtName.isFocusableInTouchMode = state
+        binding.edtBir.isFocusable = state
+        binding.edtBir.isFocusableInTouchMode = state
+        binding.edtAddress.isFocusable = state
+        binding.edtAddress.isFocusableInTouchMode = state
 
-        currView.btn_confirm.text = if (state) "確定" else "編輯"
+        binding.btnConfirm.text = if (state) "確定" else "編輯"
     }
 
 
     private fun doUpdate() {
         setViewFocus(false)
-
-        Account.account.userInfo.name = currView.edt_name.text.toString()
-        Account.account.userInfo.birthday = currView.edt_bir.text.toString()
-        Account.account.userInfo.address = currView.edt_address.text.toString()
-
-//        mDataRef?.setValue(Account.account.userInfo,
-//            object : DatabaseReference.CompletionListener {
-//            override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
-//                if (p0 == null) Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show()
-//            }
-//        })
+        Account.account.userInfo.name = binding.edtName.text.toString()
+        Account.account.userInfo.birthday = binding.edtBir.text.toString()
+        Account.account.userInfo.address = binding.edtAddress.text.toString()
 
         mDataRef = datebase?.getReference("accounts")
 
         var map = HashMap<String, Account>()
-        map.put(Account.id, Account.account)
+        map.put(Account.id.get()!!, Account.account)
 
         mDataRef?.updateChildren(
             map as Map<String, Any>,
             object : DatabaseReference.CompletionListener {
                 override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
-                    if (p0 == null) Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show()
+                    if (p0 == null) {
+                        Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
     }
