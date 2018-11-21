@@ -5,15 +5,17 @@
 
 
     <data>
+
         <variable
             name="model"
             type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileEditViewModel"/>
 
-            <variable
-                name="account"
-                type="epost.android.mitake.com.kotlinsample.Account"/>
+        <variable
+            name="account"
+            type="epost.android.mitake.com.kotlinsample.Account"/>
 
     </data>
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -28,8 +30,7 @@
             <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{account.id}"/>
+                android:layout_height="wrap_content"/>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -50,8 +51,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:text="@{model.info.name}"
-                        android:inputType="text"/>
+                        android:focusable="@{model.isEdit.get()}"
+                        android:focusableInTouchMode="@{model.isEdit.get()}"
+                        android:inputType="text"
+                        android:text="@{model.info.name}"/>
                 </TableRow>
 
                 <TableRow
@@ -68,8 +71,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:text="@{model.info.birthday}"
-                        android:inputType="text"/>
+                        android:focusable="@{model.isEdit.get()}"
+                        android:focusableInTouchMode="@{model.isEdit.get()}"
+                        android:inputType="text"
+                        android:text="@{model.info.birthday}"/>
                 </TableRow>
 
                 <TableRow
@@ -86,8 +91,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:text="@{model.info.address}"
-                        android:inputType="text"/>
+                        android:focusable="@{model.isEdit.get()}"
+                        android:focusableInTouchMode="@{model.isEdit.get()}"
+                        android:inputType="text"
+                        android:text="@{model.info.address}"/>
                 </TableRow>
             </TableLayout>
 
@@ -96,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="確定"/>
+                android:text="@{model.isEdit.get() ? @string/btn_confirm : @string/btn_edit}"/>
 
         </LinearLayout>
     </FrameLayout>

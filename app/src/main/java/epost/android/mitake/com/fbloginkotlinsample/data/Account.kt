@@ -8,13 +8,15 @@ public class Account : BaseObservable {
     var userInfo: Info
 
     constructor(id: String, name: String = "", birthday: String = "") {
-        Account.id = ObservableField(id)
+        if (Account.id == null) {
+            Account.id = ObservableField(id)
+        }
         this.userInfo = Info(name, birthday)
     }
 
     companion object {
         lateinit var account: Account
-        lateinit var id: ObservableField<String>
+        var id: ObservableField<String>? = null
     }
 
 }

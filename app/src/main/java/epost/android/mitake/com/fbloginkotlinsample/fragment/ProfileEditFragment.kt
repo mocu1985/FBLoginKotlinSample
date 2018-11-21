@@ -39,7 +39,6 @@ class ProfileEditFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
     var datebase: FirebaseDatabase? = null
     var mDataRef: DatabaseReference? = null
-    lateinit var currView: View
 
     lateinit var viewModel: ProfileEditViewModel
     lateinit var binding: FragmentProfileEditBinding
@@ -56,7 +55,7 @@ class ProfileEditFragment : Fragment() {
 
     private fun initDatabase() {
         datebase = FirebaseDatabase.getInstance()
-        mDataRef = datebase?.getReference("accounts/" + Account.id.get() + "/userInfo")
+        mDataRef = datebase?.getReference("accounts/" + Account.id!!.get() + "/userInfo")
 
 
         mDataRef?.addValueEventListener(object : ValueEventListener {
@@ -64,7 +63,7 @@ class ProfileEditFragment : Fragment() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                viewModel.updateInfo(p0)
+                viewModel.updateInfo(p0, binding)
 
             }
 
@@ -78,27 +77,20 @@ class ProfileEditFragment : Fragment() {
 
         viewModel.info = Account.account.userInfo
 
-        binding.btnConfirm.setOnClickListener { if (binding.btnConfirm.text.equals("編輯")) setViewFocus(true) else doUpdate() }
+        binding.btnConfirm.setOnClickListener {
+            if(viewModel.isEdit.get()!!){
+                doUpdate()
+            }
+            viewModel.setBtnText()
+        }
 
         binding.model = viewModel
 
         return binding.root
     }
 
-    private fun setViewFocus(state: Boolean) {
-        binding.edtName.isFocusable = state
-        binding.edtName.isFocusableInTouchMode = state
-        binding.edtBir.isFocusable = state
-        binding.edtBir.isFocusableInTouchMode = state
-        binding.edtAddress.isFocusable = state
-        binding.edtAddress.isFocusableInTouchMode = state
-
-        binding.btnConfirm.text = if (state) "確定" else "編輯"
-    }
-
 
     private fun doUpdate() {
-        setViewFocus(false)
         Account.account.userInfo.name = binding.edtName.text.toString()
         Account.account.userInfo.birthday = binding.edtBir.text.toString()
         Account.account.userInfo.address = binding.edtAddress.text.toString()
@@ -106,7 +98,7 @@ class ProfileEditFragment : Fragment() {
         mDataRef = datebase?.getReference("accounts")
 
         var map = HashMap<String, Account>()
-        map.put(Account.id.get()!!, Account.account)
+        map.put(Account.id!!.get()!!, Account.account)
 
         mDataRef?.updateChildren(
             map as Map<String, Any>,

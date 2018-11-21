@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAccount() {
         try {
-            var reference = "accounts/" + Account.id.get() + "/userInfo"
+            var reference = "accounts/" + Account.id!!.get() + "/userInfo"
             ref = datebase?.getReference(reference)
             ref?.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    if (p0 != null) {
+                    if (p0.exists()) {
                         Logger.d(p0.toString())
                         Account.account.userInfo = p0.getValue(Info::class.java)!!
                         var intent = Intent(this@MainActivity, MainTabActivity::class.java)
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         ref = datebase?.getReference("accounts")
 
         var map = HashMap<String, Account>()
-        map.put(Account.id.get()!!, Account.account)
+        map.put(Account.id!!.get()!!, Account.account)
 
         ref?.updateChildren(
             map as Map<String, Any>,
