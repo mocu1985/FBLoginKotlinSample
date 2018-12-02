@@ -13,7 +13,7 @@ class ProfileEditViewModel : ViewModel() {
     var isEdit: ObservableField<Boolean> = ObservableField(false)
 
     fun updateInfo(p0: DataSnapshot, binding: FragmentProfileEditBinding) {
-        Log.d("****", p0.getValue().toString())
+        Log.d("updateInfo", p0.getValue().toString())
         Account.account.userInfo = p0.getValue(Info::class.java)!!
 
         info.apply {
@@ -22,8 +22,6 @@ class ProfileEditViewModel : ViewModel() {
             address = Account.account.userInfo.address
             sex = Account.account.userInfo.sex
         }
-        Log.d("****", Account.account.userInfo.name)
-        Log.d("****", info.name)
     }
 
     fun setBtnText() {

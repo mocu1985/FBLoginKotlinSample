@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.google.firebase.database.*
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
+import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileEditViewModel
 import epost.android.mitake.com.kotlinsample.Account
 import java.util.*
@@ -32,7 +33,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class ProfileEditFragment : Fragment() {
+class ProfileEditFragment : ParentFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,6 +51,10 @@ class ProfileEditFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+//        initDatabase()
+    }
+
+    override fun initData() {
         initDatabase()
     }
 

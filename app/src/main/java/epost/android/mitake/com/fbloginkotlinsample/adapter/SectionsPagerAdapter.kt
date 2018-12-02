@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
+import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import kotlinx.android.synthetic.main.fragment_main_tab.view.*
-import java.util.*
 
 class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    private val fragmentList = ArrayList<Fragment>()
+    private val fragmentList = ArrayList<ParentFragment>()
 
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
@@ -23,18 +23,24 @@ class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         // Show 3 total pages.
-        return 3
+        return fragmentList.size
     }
 
-    fun addFragment(fragment: Fragment? = PlaceholderFragment.newInstance(1)) {
+    fun addFragment(fragment: ParentFragment? = PlaceholderFragment.newInstance(1)) {
         fragmentList.add(fragment!!)
+    }
+
+    fun getFragmentList(): ArrayList<ParentFragment> {
+        return fragmentList
     }
 }
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlaceholderFragment : Fragment() {
+class PlaceholderFragment : ParentFragment() {
+    override fun initData() {
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_main_tab, container, false)

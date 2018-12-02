@@ -2,9 +2,11 @@ package epost.android.mitake.com.fbloginkotlinsample
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
 import epost.android.mitake.com.fbloginkotlinsample.fragment.ProfileEditFragment
+import epost.android.mitake.com.fbloginkotlinsample.fragment.ProfileListFragment
 import kotlinx.android.synthetic.main.activity_main_tab.*
 
 class MainTabActivity : AppCompatActivity() {
@@ -29,14 +31,30 @@ class MainTabActivity : AppCompatActivity() {
 
 
         mSectionsPagerAdapter!!.addFragment(ProfileEditFragment())
-        mSectionsPagerAdapter!!.addFragment()
+        mSectionsPagerAdapter!!.addFragment(ProfileListFragment())
         mSectionsPagerAdapter!!.addFragment()
 
         // Set up the ViewPager with the sections adapter.
-        container.adapter = mSectionsPagerAdapter
+        view_pager.adapter = mSectionsPagerAdapter
 
-        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+//        view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+
+        mSectionsPagerAdapter!!.getFragmentList().get(0).initData()
+
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                mSectionsPagerAdapter!!.getFragmentList().get(position).initData()
+            }
+
+        })
+
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(view_pager))
     }
 
 

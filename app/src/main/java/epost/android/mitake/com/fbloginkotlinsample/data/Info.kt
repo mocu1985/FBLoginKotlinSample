@@ -21,7 +21,7 @@ public class Info : BaseObservable{
         }
 
     @get:Bindable
-    var sex: Boolean = true
+    var sex: String? = null
         set(value) {
             field = value
             notifyPropertyChanged(BR.sex)
@@ -35,7 +35,7 @@ public class Info : BaseObservable{
         }
 
     constructor()
-    constructor(name: String, birthday: String, sex: Boolean = true, address: String = "") {
+    constructor(name: String, birthday: String, sex: String = "男", address: String = "") {
         this.name = name
         this.birthday = birthday
         this.sex = sex
