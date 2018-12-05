@@ -5,131 +5,55 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.facebook.*
-import com.facebook.appevents.AppEventsLogger
 import com.facebook.login.LoginResult
-import com.google.firebase.database.*
-import com.orhanobut.logger.Logger
-import epost.android.mitake.com.fbloginkotlinsample.data.Info
-import epost.android.mitake.com.kotlinsample.Account
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FacebookAuthProvider
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var callbackManager: CallbackManager
     lateinit var profileTracker: ProfileTracker
+    lateinit var mAuth: FirebaseAuth
     lateinit var accToken: AccessToken
-    var datebase: FirebaseDatabase? = null
-    var ref: DatabaseReference? = null
+    //    var datebase: FirebaseDatabase? = null
+//    var ref: DatabaseReference? = null
+    val TAG = "MainActivity"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FacebookSdk.sdkInitialize(getApplicationContext())
-        AppEventsLogger.activateApp(this)
-
-        callbackManager = CallbackManager.Factory.create()
-
-        datebase = FirebaseDatabase.getInstance()
-
-
-        try {
-            accToken = AccessToken.getCurrentAccessToken()
-
-            if (accToken != null && !accToken.isExpired) {
-                Log.d("****", "is Login")
-                getInfo(accToken)
-            } else {
-                callFBManager()
-            }
-        } catch (e: java.lang.Exception) {
-            callFBManager()
-        }
-
+        mAuth = FirebaseAuth.getInstance()
 
         login_button.setOnClickListener { callFBManager() }
     }
 
 
-    private fun getInfo(token: AccessToken) {
-        var request = GraphRequest.newMeRequest(
-            token,
-            object : GraphRequest.GraphJSONObjectCallback {
-                override fun onCompleted(`object`: JSONObject?, response: GraphResponse?) {
-                    Logger.json(`object`.toString())
+    override fun onStart() {
+        super.onStart()
+        val firebaseUser = mAuth.currentUser
 
-
-                    Account.account = Account(
-                        `object`!!.get("id").toString(),
-                        `object`!!.get("name").toString(),
-                        `object`!!.get("birthday").toString()
-                    )
-
-//                    doUpdate()
-                    checkAccount()
-                }
-
-            })
-
-        var bundle = Bundle()
-        bundle.putString("fields", "id,name,birthday")
-        request.parameters = bundle
-        request.executeAsync()
-    }
-
-    private fun checkAccount() {
-        try {
-            var reference = "accounts/" + Account.id!!.get() + "/userInfo"
-            ref = datebase?.getReference(reference)
-            ref?.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    Log.d("****", p0.toString())
-                    doUpdate()
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.exists()) {
-                        Logger.d(p0.toString())
-                        Account.account.userInfo = p0.getValue(Info::class.java)!!
-                        var intent = Intent(this@MainActivity, MainTabActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        doUpdate()
-                    }
-                }
-            })
-        } catch (e: Exception) {
-            Log.d("*****", e.toString())
-            doUpdate()
+        if (firebaseUser != null) {
+            firebaseUser?.let {
+                Log.d(TAG, it.displayName)
+                Log.d(TAG, it.uid)
+            }
+        } else {
+            Log.d(TAG, "user null")
         }
 
     }
 
-    private fun doUpdate() {
-        ref = datebase?.getReference("accounts")
-
-        var map = HashMap<String, Account>()
-        map.put(Account.id!!.get()!!, Account.account)
-
-        ref?.updateChildren(
-            map as Map<String, Any>,
-            object : DatabaseReference.CompletionListener {
-                override fun onComplete(p0: DatabaseError?, p1: DatabaseReference) {
-                    if (p0 == null) {
-                        var intent = Intent(this@MainActivity, MainTabActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
-            })
-    }
-
     private fun callFBManager() {
-        var permissionList = mutableListOf("email", "user_birthday")
+        var permissionList = mutableListOf("email", "public_profile")
         login_button.setReadPermissions(permissionList)
 
+        callbackManager = CallbackManager.Factory.create()
         login_button.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
 
             override fun onSuccess(result: LoginResult?) {
@@ -137,15 +61,38 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancel() {
-                Log.d("****", "onCancel")
+                Log.d(TAG, "onCancel")
             }
 
             override fun onError(error: FacebookException?) {
-                Log.d("****", error.toString())
+                Log.d(TAG, error.toString())
 
             }
 
         })
+    }
+
+    private fun getInfo(token: AccessToken) {
+        var credential = FacebookAuthProvider.getCredential(token.token)
+
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
+                override fun onComplete(p0: Task<AuthResult>) {
+                    if (p0.isSuccessful) {
+                        val firebaseUser = mAuth.currentUser
+                        Log.d(TAG, "登入成功")
+
+                        firebaseUser?.let {
+                            Log.d(TAG, it.displayName)
+                            Log.d(TAG, it.uid)
+                        }
+                    } else {
+                        Log.d(TAG, "登入失敗")
+                    }
+                }
+
+            })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -153,9 +100,5 @@ class MainActivity : AppCompatActivity() {
 
         //callbackManager.onActivityResult對應上方FacebookCallback
         callbackManager?.onActivityResult(requestCode, resultCode, data)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }

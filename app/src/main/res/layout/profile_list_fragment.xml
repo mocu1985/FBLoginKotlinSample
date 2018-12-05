@@ -7,7 +7,7 @@
     <data>
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.ProfileListViewModel"></variable>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileListViewModel"></variable>
     </data>
 
     <FrameLayout
