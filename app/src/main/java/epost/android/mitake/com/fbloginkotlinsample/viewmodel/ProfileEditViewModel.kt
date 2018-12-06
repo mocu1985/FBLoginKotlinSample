@@ -2,26 +2,41 @@ package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
-import android.util.Log
-import com.google.firebase.database.DataSnapshot
-import epost.android.mitake.com.fbloginkotlinsample.data.Info
+import android.support.design.widget.Snackbar
+import epost.android.mitake.com.fbloginkotlinsample.MainTabActivity
+import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
 import epost.android.mitake.com.kotlinsample.Account
 
 class ProfileEditViewModel : ViewModel() {
-    lateinit var info: Info
+    lateinit var account: Account
     var isEdit: ObservableField<Boolean> = ObservableField(false)
 
-    fun updateInfo(p0: DataSnapshot, binding: FragmentProfileEditBinding) {
-        Log.d("updateInfo", p0.getValue().toString())
-        Account.account.userInfo = p0.getValue(Info::class.java)!!
 
-        info.apply {
-            name = Account.account.userInfo.name
-            birthday = Account.account.userInfo.birthday
-            address = Account.account.userInfo.address
-            sex = Account.account.userInfo.sex
-        }
+    fun doUpdate(binding: FragmentProfileEditBinding) {
+        GlobalProperties.account.uid = binding.edtUserid.text.toString()
+        GlobalProperties.account.userInfo.name = binding.edtName.text.toString()
+        GlobalProperties.account.userInfo.birthday = binding.edtBir.text.toString()
+        GlobalProperties.account.userInfo.address = binding.edtAddress.text.toString()
+
+        var updateRef = MainTabActivity.rootRef.collection(GlobalProperties.ACCOUNT_ROOT)
+            .document(GlobalProperties.currect_id)
+
+
+        var hashMap = HashMap<String, Any>()
+        hashMap.put("uid", GlobalProperties.account.uid)
+        hashMap.put("userInfo.name", GlobalProperties.account.userInfo.name!!)
+        hashMap.put("userInfo.birthday", GlobalProperties.account.userInfo.birthday!!)
+        hashMap.put("userInfo.address", GlobalProperties.account.userInfo.address!!)
+
+        updateRef.update(hashMap)
+            .addOnSuccessListener {
+                Snackbar.make(binding.contentView, "更新成功2", Snackbar.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Snackbar.make(binding.contentView, "更新失敗2", Snackbar.LENGTH_LONG).show()
+            }
+
     }
 
     fun setBtnText() {

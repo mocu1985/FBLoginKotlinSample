@@ -4,14 +4,14 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import epost.android.mitake.com.fbloginkotlinsample.BR
 
-public class Info : BaseObservable{
+public class Info : BaseObservable {
 
     @get:Bindable
     var name: String? = null
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.name)
-    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.name)
+        }
 
     @get:Bindable
     var birthday: String? = null

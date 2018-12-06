@@ -2,7 +2,9 @@ package epost.android.mitake.com.fbloginkotlinsample
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
 import epost.android.mitake.com.fbloginkotlinsample.fragment.ProfileEditFragment
 import epost.android.mitake.com.fbloginkotlinsample.fragment.ProfileListFragment
@@ -19,6 +21,9 @@ class MainTabActivity : AppCompatActivity() {
      * [android.support.v4.app.FragmentStatePagerAdapter].
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    companion object {
+        val rootRef = FirebaseFirestore.getInstance()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +41,6 @@ class MainTabActivity : AppCompatActivity() {
         // Set up the ViewPager with the sections adapter.
         view_pager.adapter = mSectionsPagerAdapter
 
-
-//        view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         view_pager.addOnPageChangeListener(object : TabLayout.TabLayoutOnPageChangeListener(tabs) {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -47,19 +50,11 @@ class MainTabActivity : AppCompatActivity() {
 
         mSectionsPagerAdapter!!.getFragmentList().get(0).initData()
 
-//        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-//            override fun onPageScrollStateChanged(state: Int) {
-//            }
-//
-//            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//                mSectionsPagerAdapter!!.getFragmentList().get(position).initData()
-//            }
-//
-//        })
 
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(view_pager))
+    }
+
+    override fun onBackPressed() {
+        ActivityCompat.finishAffinity(this)
     }
 }

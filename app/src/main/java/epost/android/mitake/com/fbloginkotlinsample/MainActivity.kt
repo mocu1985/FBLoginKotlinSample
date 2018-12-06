@@ -2,23 +2,31 @@ package epost.android.mitake.com.fbloginkotlinsample
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.facebook.*
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
 import com.facebook.login.LoginResult
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
+import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_profile_edit.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var callbackManager: CallbackManager
-    lateinit var profileTracker: ProfileTracker
     lateinit var mAuth: FirebaseAuth
-    lateinit var accToken: AccessToken
+    val rootRef = FirebaseFirestore.getInstance()
+
     //    var datebase: FirebaseDatabase? = null
 //    var ref: DatabaseReference? = null
     val TAG = "MainActivity"
@@ -36,17 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val firebaseUser = mAuth.currentUser
-
-        if (firebaseUser != null) {
-            firebaseUser?.let {
-                Log.d(TAG, it.displayName)
-                Log.d(TAG, it.uid)
-            }
-        } else {
-            Log.d(TAG, "user null")
-        }
-
+        updateLoginProcess()
     }
 
     private fun callFBManager() {
@@ -76,29 +74,70 @@ class MainActivity : AppCompatActivity() {
         var credential = FacebookAuthProvider.getCredential(token.token)
 
         mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
-                override fun onComplete(p0: Task<AuthResult>) {
-                    if (p0.isSuccessful) {
-                        val firebaseUser = mAuth.currentUser
-                        Log.d(TAG, "登入成功")
+            .addOnCompleteListener(this) { p0 ->
+                if (p0.isSuccessful) {
+                    updateLoginProcess()
+                } else {
+                    Log.d(TAG, "FB 登入失敗")
+                }
+            }
 
-                        firebaseUser?.let {
-                            Log.d(TAG, it.displayName)
-                            Log.d(TAG, it.uid)
-                        }
+    }
+
+
+    fun updateLoginProcess() {
+        val firebaseUser = mAuth.currentUser
+        GlobalProperties.currect_id = firebaseUser?.uid!!
+        val uidRef = rootRef.collection(GlobalProperties.ACCOUNT_ROOT).document(GlobalProperties.currect_id)
+
+        if (firebaseUser != null) {
+            uidRef.get().addOnCompleteListener { p0 ->
+                if (p0.isSuccessful) {
+                    var document = p0.result!!
+                    if (document.exists()) {
+                        Log.d(TAG, document.data.toString())
+                        GlobalProperties.account = document.toObject(Account::class.java)!!
+                        var intent = Intent(this@MainActivity, MainTabActivity::class.java)
+                        startActivity(intent)
                     } else {
-                        Log.d(TAG, "登入失敗")
+                        addFirstAccount(GlobalProperties.currect_id, firebaseUser, uidRef)
                     }
+                }
+            }
+
+        } else {
+            Log.d(TAG, "user null")
+            if (firebaseUser == null) {
+                addFirstAccount(GlobalProperties.currect_id, firebaseUser, uidRef)
+            }
+        }
+    }
+
+
+    fun addFirstAccount(uid: String, firebaseUser: FirebaseUser, uidRef: DocumentReference) {
+        GlobalProperties.account = Account(firebaseUser.displayName!!)
+
+        uidRef.set(GlobalProperties.account)
+            .addOnSuccessListener {
+                Log.d(TAG, "註冊成功")
+                var intent = Intent(this@MainActivity, MainTabActivity::class.java)
+                startActivity(intent)
+            }
+            .addOnFailureListener(object : OnFailureListener {
+                override fun onFailure(p0: Exception) {
+                    Snackbar.make(content_view, "註冊失敗", Snackbar.LENGTH_LONG)
+                        .setAction("重新註冊") {
+                            addFirstAccount(uid, firebaseUser, uidRef)
+                        }.show()
                 }
 
             })
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         //callbackManager.onActivityResult對應上方FacebookCallback
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 }

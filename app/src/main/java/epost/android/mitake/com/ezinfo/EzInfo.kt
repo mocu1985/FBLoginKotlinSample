@@ -1,12 +1,7 @@
 package epost.android.mitake.com.ezinfo
 
-import android.net.http.SslError
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.webkit.SslErrorHandler
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import epost.android.mitake.com.fbloginkotlinsample.R
 import kotlinx.android.synthetic.main.activity_ez_info.*
 
@@ -24,16 +19,22 @@ class EzInfo : AppCompatActivity() {
     }
 
     private fun initView() {
-        wb_view!!.webViewClient = object : WebViewClient() {
-            override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
-                super.onReceivedSslError(view, handler, error)
-                Log.e("*******", error.toString())
-            }
+        wb_view.settings.javaScriptEnabled = true
+        wb_view.settings.domStorageEnabled = true
 
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-            }
-        }
+//        wb_view!!.webViewClient = object : WebViewClient() {
+//            override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+//                super.onReceivedSslError(view, handler, error)
+//                Log.e("onReceivedSslError", error.toString())
+//            }
+//
+//            override fun onPageFinished(view: WebView?, url: String?) {
+//                super.onPageFinished(view, url)
+//                Log.e("onPageFinished", url)
+//            }
+//
+//
+//        }
 
         wb_view.loadUrl(url)
     }

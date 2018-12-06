@@ -18,6 +18,7 @@
 
 
     <FrameLayout
+        android:id="@+id/content_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -27,14 +28,30 @@
             android:layout_margin="10dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="身分證"/>
+
+                    <EditText
+                        android:id="@+id/edt_userid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:focusable="@{model.isEdit.get()}"
+                        android:focusableInTouchMode="@{model.isEdit.get()}"
+                        android:inputType="text"
+                        android:text="@{model.account.uid}"/>
+                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -54,7 +71,7 @@
                         android:focusable="@{model.isEdit.get()}"
                         android:focusableInTouchMode="@{model.isEdit.get()}"
                         android:inputType="text"
-                        android:text="@{model.info.name}"/>
+                        android:text="@{model.account.userInfo.name}"/>
                 </TableRow>
 
                 <TableRow
@@ -74,7 +91,7 @@
                         android:focusable="@{model.isEdit.get()}"
                         android:focusableInTouchMode="@{model.isEdit.get()}"
                         android:inputType="text"
-                        android:text="@{model.info.birthday}"/>
+                        android:text="@{model.account.userInfo.birthday}"/>
                 </TableRow>
 
                 <TableRow
@@ -94,7 +111,7 @@
                         android:focusable="@{model.isEdit.get()}"
                         android:focusableInTouchMode="@{model.isEdit.get()}"
                         android:inputType="text"
-                        android:text="@{model.info.address}"/>
+                        android:text="@{model.account.userInfo.address}"/>
                 </TableRow>
             </TableLayout>
 
