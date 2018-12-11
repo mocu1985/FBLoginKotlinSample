@@ -3,6 +3,7 @@ package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableField
 import android.support.design.widget.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import epost.android.mitake.com.fbloginkotlinsample.MainTabActivity
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
@@ -37,6 +38,10 @@ class ProfileEditViewModel : ViewModel() {
                 Snackbar.make(binding.contentView, "更新失敗2", Snackbar.LENGTH_LONG).show()
             }
 
+    }
+
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
     }
 
     fun setBtnText() {

@@ -122,6 +122,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@{model.isEdit.get() ? @string/btn_confirm : @string/btn_edit}"/>
 
+            <Button
+                android:id="@+id/btn_logout"
+                android:onClick="@{() -> model.logout()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登出"/>
+
         </LinearLayout>
     </FrameLayout>
 </layout>

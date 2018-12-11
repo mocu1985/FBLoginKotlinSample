@@ -1,0 +1,129 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileFragment">
+
+
+    <data>
+        <variable
+            name="model"
+            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileFragment"/>
+
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fragmentparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bar_pressed_black5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline">
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                app:mtf_animationDuration="50"
+                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
+                app:mtf_labelColor="@color/com_facebook_messenger_blue"
+                app:mtf_openKeyboardOnFocus="true">
+
+                <EditText
+                    android:id="@+id/edt_first_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/first_name"
+                    android:lines="1"
+                    android:textColor="@color/com_facebook_messenger_blue"/>
+
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:mtf_animationDuration="50"
+
+                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
+                app:mtf_labelColor="@color/com_facebook_messenger_blue"
+                app:mtf_openKeyboardOnFocus="true">
+
+                <EditText
+                    android:id="@+id/edt_middle_n"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/middle_name"
+                    android:lines="1"
+                    android:textColor="@color/com_facebook_messenger_blue"/>
+
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:mtf_animationDuration="50"
+
+                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
+                app:mtf_labelColor="@color/com_facebook_messenger_blue"
+                app:mtf_openKeyboardOnFocus="true">
+
+                <EditText
+                    android:id="@+id/edt_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/sex"
+                    android:lines="1"
+                    android:textColor="@color/com_facebook_messenger_blue"/>
+
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+            <com.github.florent37.materialtextfield.MaterialTextField
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mtf_animationDuration="50"
+                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
+                app:mtf_labelColor="@color/com_facebook_messenger_blue"
+                app:mtf_openKeyboardOnFocus="true">
+
+                <EditText
+                    android:id="@+id/edt_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/city"
+                    android:lines="1"
+                    android:textColor="@color/com_facebook_messenger_blue"/>
+
+            </com.github.florent37.materialtextfield.MaterialTextField>
+
+        </LinearLayout>
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

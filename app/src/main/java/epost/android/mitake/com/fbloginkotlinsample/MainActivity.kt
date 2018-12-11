@@ -2,7 +2,6 @@ package epost.android.mitake.com.fbloginkotlinsample
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.facebook.AccessToken
@@ -10,16 +9,15 @@ import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
-import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.FragmentParentActivity
 import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_profile_edit.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,7 +42,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        updateLoginProcess()
+        try {
+            updateLoginProcess()
+        } catch (e: Exception) {
+//            捕捉異常，讓使用者手動登出再登入
+        }
     }
 
     private fun callFBManager() {
@@ -88,7 +90,8 @@ class MainActivity : AppCompatActivity() {
     fun updateLoginProcess() {
         val firebaseUser = mAuth.currentUser
         GlobalProperties.currect_id = firebaseUser?.uid!!
-        val uidRef = rootRef.collection(GlobalProperties.ACCOUNT_ROOT).document(GlobalProperties.currect_id)
+        val uidRef =
+            rootRef.collection(GlobalProperties.ACCOUNT_ROOT).document(GlobalProperties.currect_id)
 
         if (firebaseUser != null) {
             uidRef.get().addOnCompleteListener { p0 ->
@@ -116,22 +119,23 @@ class MainActivity : AppCompatActivity() {
 
     fun addFirstAccount(uid: String, firebaseUser: FirebaseUser, uidRef: DocumentReference) {
         GlobalProperties.account = Account(firebaseUser.displayName!!)
+        startActivity(Intent(this@MainActivity, FragmentParentActivity::class.java))
 
-        uidRef.set(GlobalProperties.account)
-            .addOnSuccessListener {
-                Log.d(TAG, "註冊成功")
-                var intent = Intent(this@MainActivity, MainTabActivity::class.java)
-                startActivity(intent)
-            }
-            .addOnFailureListener(object : OnFailureListener {
-                override fun onFailure(p0: Exception) {
-                    Snackbar.make(content_view, "註冊失敗", Snackbar.LENGTH_LONG)
-                        .setAction("重新註冊") {
-                            addFirstAccount(uid, firebaseUser, uidRef)
-                        }.show()
-                }
-
-            })
+//        uidRef.set(GlobalProperties.account)
+//            .addOnSuccessListener {
+//                Log.d(TAG, "註冊成功")
+//                var intent = Intent(this@MainActivity, MainTabActivity::class.java)
+//                startActivity(intent)
+//            }
+//            .addOnFailureListener(object : OnFailureListener {
+//                override fun onFailure(p0: Exception) {
+//                    Snackbar.make(content_view, "註冊失敗", Snackbar.LENGTH_LONG)
+//                        .setAction("重新註冊") {
+//                            addFirstAccount(uid, firebaseUser, uidRef)
+//                        }.show()
+//                }
+//
+//            })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
