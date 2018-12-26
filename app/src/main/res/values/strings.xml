@@ -18,8 +18,9 @@
 
     <string name="profile_title">個人資訊</string>
     <string name="next">下一步</string>
-    <string name="first_name">姓</string>
+    <string name="first_name">姓名</string>
     <string name="middle_name">名</string>
+    <string name="birthday">生日</string>
     <string name="sex">性別</string>
     <string name="city">居住地</string>
     <string name="profile_check_title">身份驗證</string>

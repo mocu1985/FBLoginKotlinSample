@@ -39,8 +39,7 @@ class ProfileEditFragment : ParentFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_profile_edit, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_edit, container, false)
 
         viewModel = ViewModelProviders.of(this).get(ProfileEditViewModel::class.java)
 

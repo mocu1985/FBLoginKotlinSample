@@ -1,15 +1,13 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
+
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileFragment"/>
-
+            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileViewModel"/>
     </data>
 
 
@@ -26,86 +24,55 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline">
 
-            <com.github.florent37.materialtextfield.MaterialTextField
+
+            <EditText
+                android:id="@+id/edt_first_n"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                app:mtf_animationDuration="50"
-                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
-                app:mtf_labelColor="@color/com_facebook_messenger_blue"
-                app:mtf_openKeyboardOnFocus="true">
+                android:hint="@string/first_name"
+                android:lines="1"
+                android:text="@={model.account.userInfo.name}"
+                android:textColor="@color/com_facebook_messenger_blue"/>
 
-                <EditText
-                    android:id="@+id/edt_first_n"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/first_name"
-                    android:lines="1"
-                    android:textColor="@color/com_facebook_messenger_blue"/>
-
-
-            </com.github.florent37.materialtextfield.MaterialTextField>
-
-            <com.github.florent37.materialtextfield.MaterialTextField
+            <EditText
+                android:id="@+id/edt_uid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                app:mtf_animationDuration="50"
-
-                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
-                app:mtf_labelColor="@color/com_facebook_messenger_blue"
-                app:mtf_openKeyboardOnFocus="true">
-
-                <EditText
-                    android:id="@+id/edt_middle_n"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/middle_name"
-                    android:lines="1"
-                    android:textColor="@color/com_facebook_messenger_blue"/>
+                android:hint="@string/user_id"
+                android:lines="1"
+                android:text="@={model.account.uid}"
+                android:textColor="@color/com_facebook_messenger_blue"/>
 
 
-            </com.github.florent37.materialtextfield.MaterialTextField>
-
-            <com.github.florent37.materialtextfield.MaterialTextField
+            <EditText
+                android:id="@+id/edt_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                app:mtf_animationDuration="50"
-
-                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
-                app:mtf_labelColor="@color/com_facebook_messenger_blue"
-                app:mtf_openKeyboardOnFocus="true">
-
-                <EditText
-                    android:id="@+id/edt_sex"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/sex"
-                    android:lines="1"
-                    android:textColor="@color/com_facebook_messenger_blue"/>
+                android:hint="@string/birthday"
+                android:lines="1"
+                android:text="@={model.account.userInfo.birthday}"
+                android:textColor="@color/com_facebook_messenger_blue"/>
 
 
-            </com.github.florent37.materialtextfield.MaterialTextField>
-
-            <com.github.florent37.materialtextfield.MaterialTextField
+            <EditText
+                android:id="@+id/edt_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mtf_animationDuration="50"
-                app:mtf_backgroundColor="@color/com_facebook_button_border_color_focused"
-                app:mtf_labelColor="@color/com_facebook_messenger_blue"
-                app:mtf_openKeyboardOnFocus="true">
+                android:hint="@string/sex"
+                android:lines="1"
+                android:text="@={model.account.userInfo.sex}"
+                android:textColor="@color/com_facebook_messenger_blue"/>
 
-                <EditText
-                    android:id="@+id/edt_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/city"
-                    android:lines="1"
-                    android:textColor="@color/com_facebook_messenger_blue"/>
 
-            </com.github.florent37.materialtextfield.MaterialTextField>
+            <EditText
+                android:id="@+id/edt_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:lines="1"
+                android:text="@={model.account.userInfo.address}"
+                android:textColor="@color/com_facebook_messenger_blue"/>
+
 
         </LinearLayout>
 

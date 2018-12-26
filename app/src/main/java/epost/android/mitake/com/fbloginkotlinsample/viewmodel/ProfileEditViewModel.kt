@@ -25,7 +25,7 @@ class ProfileEditViewModel : ViewModel() {
 
 
         var hashMap = HashMap<String, Any>()
-        hashMap.put("uid", GlobalProperties.account.uid)
+        hashMap.put("uid", GlobalProperties.account.uid!!)
         hashMap.put("userInfo.name", GlobalProperties.account.userInfo.name!!)
         hashMap.put("userInfo.birthday", GlobalProperties.account.userInfo.birthday!!)
         hashMap.put("userInfo.address", GlobalProperties.account.userInfo.address!!)
