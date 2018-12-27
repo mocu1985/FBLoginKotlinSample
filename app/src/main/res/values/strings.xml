@@ -25,10 +25,12 @@
     <string name="city">居住地</string>
     <string name="profile_check_title">身份驗證</string>
     <string name="user_id">身分證字號</string>
+    <string name="user_uuid">ID：</string>
     <string name="release_date">發證日期</string>
     <string name="release_loc">發證地點</string>
     <string name="release_type">領補換類別</string>
     <string name="pass_title">略過</string>
     <string name="done_title">完成</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>

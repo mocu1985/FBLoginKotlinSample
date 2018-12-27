@@ -1,14 +1,14 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent
+package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.content.Intent
 import android.support.design.widget.Snackbar
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.firestore.FirebaseFirestore
-import epost.android.mitake.com.fbloginkotlinsample.MainTabActivity
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FirstProfileFragmentBinding
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.FragmentParentActivity
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.MainTabActivity
 import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.fragment_parent_activity.*
 
@@ -18,6 +18,10 @@ class FirstProfileViewModel : ViewModel() {
     lateinit var activity: FragmentParentActivity
 
     fun createAccount(binding: FirstProfileFragmentBinding) {
+
+
+        account.userInfo.uuid = account.uid!!.substring(1, account.uid!!.length).toInt().minus(98989898).toString()
+
 
         val uidRef =
             FirebaseFirestore.getInstance().collection(GlobalProperties.ACCOUNT_ROOT)

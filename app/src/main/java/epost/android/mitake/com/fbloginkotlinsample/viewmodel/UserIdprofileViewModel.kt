@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent
+package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel;
 

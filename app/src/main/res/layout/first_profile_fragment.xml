@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileViewModel"/>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.FirstProfileViewModel"/>
     </data>
 
 

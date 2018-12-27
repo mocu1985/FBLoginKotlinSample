@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment
+package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.userprofile
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -44,13 +44,6 @@ class ProfileEditFragment : ParentFragment() {
         viewModel = ViewModelProviders.of(this).get(ProfileEditViewModel::class.java)
 
         viewModel.account = GlobalProperties.account
-
-        binding.btnConfirm.setOnClickListener {
-            if (viewModel.isEdit.get()!!) {
-                viewModel.doUpdate(binding)
-            }
-            viewModel.setBtnText()
-        }
 
         binding.model = viewModel
 

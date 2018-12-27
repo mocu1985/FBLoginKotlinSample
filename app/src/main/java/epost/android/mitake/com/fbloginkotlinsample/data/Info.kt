@@ -34,6 +34,20 @@ public class Info : BaseObservable {
             notifyPropertyChanged(BR.address)
         }
 
+    @get:Bindable
+    var trustScore: String? = "50.0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.trustScore)
+        }
+
+    @get:Bindable
+    var uuid: String? = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.uuid)
+        }
+
     constructor()
     constructor(name: String, birthday: String, sex: String = "男", address: String = "") {
         this.name = name

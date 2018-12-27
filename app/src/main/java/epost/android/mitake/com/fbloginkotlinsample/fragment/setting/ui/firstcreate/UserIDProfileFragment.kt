@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent
+package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.firstcreate
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.UserIdprofileFragmentBindingImpl
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.UserIdprofileViewModel
 
 class UserIDProfileFragment : Fragment() {
 

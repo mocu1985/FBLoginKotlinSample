@@ -2,13 +2,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.UserIDProfileFragment">
+    tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.firstcreate.UserIDProfileFragment">
 
 
     <data>
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.UserIdprofileViewModel"/>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.UserIdprofileViewModel"/>
 
     </data>
 

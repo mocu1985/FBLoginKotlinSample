@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hjq.bar.OnTitleBarListener
 import epost.android.mitake.com.fbloginkotlinsample.R
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.fragmentparent.FirstProfileFragment
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.firstcreate.FirstProfileFragment
 import kotlinx.android.synthetic.main.fragment_parent_activity.*
 
 class FragmentParentActivity : AppCompatActivity() {

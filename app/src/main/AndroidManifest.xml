@@ -31,7 +31,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -39,13 +38,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity android:name=".fragment.setting.FragmentParentActivity">
         </activity>
-
         <activity
-            android:name=".MainTabActivity"
+            android:name=".fragment.setting.ui.main.MainTabActivity"
             android:label="@string/title_activity_main_tab">
+        </activity>
+        <activity android:name=".fragment.setting.ui.main.trade.TrustTradeActivity">
+        </activity>
+        <activity
+            android:name=".fragment.setting.ui.main.trade.ui.trusttrade.Main2Activity"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>
 
