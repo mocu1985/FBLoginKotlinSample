@@ -34,7 +34,7 @@ class FooterItem : MultiTypeAdapter.IItem {
     companion object {
 
         ///////////////////////////////////////////////
-        // data part
+        // viewData part
         // FooterItem has 3 states: Loading, Error, NoMore
         val LOADING = 0
         val ERROR = 1

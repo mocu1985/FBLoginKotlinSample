@@ -44,12 +44,7 @@
             android:name=".fragment.setting.ui.main.MainTabActivity"
             android:label="@string/title_activity_main_tab">
         </activity>
-        <activity android:name=".fragment.setting.ui.main.trade.TrustTradeActivity">
-        </activity>
-        <activity
-            android:name=".fragment.setting.ui.main.trade.ui.trusttrade.Main2Activity"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.trusttrade.TrustTradeActivity">
         </activity>
     </application>
 

@@ -35,7 +35,7 @@ public class Info : BaseObservable {
         }
 
     @get:Bindable
-    var trustScore: String? = "50.0"
+    var trustScore: String? = "50.00"
         set(value) {
             field = value
             notifyPropertyChanged(BR.trustScore)

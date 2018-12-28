@@ -1,11 +1,16 @@
 package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.content.Context
+import android.content.Intent
 import android.databinding.ObservableField
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.trusttrade.TrustTradeActivity
 import epost.android.mitake.com.kotlinsample.Account
 
 class ProfileEditViewModel : ViewModel() {
+
+    lateinit var cxt: Context;
     lateinit var account: Account
     var isEdit: ObservableField<Boolean> = ObservableField(false)
 
@@ -33,7 +38,6 @@ class ProfileEditViewModel : ViewModel() {
 //            .addOnFailureListener {
 //                Snackbar.make(binding.contentView, "更新失敗2", Snackbar.LENGTH_LONG).show()
 //            }
-
     }
 
     //Firebase FB登出
@@ -43,6 +47,11 @@ class ProfileEditViewModel : ViewModel() {
 
     fun setBtnText() {
         isEdit.set(!isEdit.get()!!)
+    }
+
+
+    fun floatAction() {
+        this.cxt.startActivity(Intent(cxt, TrustTradeActivity::class.java))
     }
 
 }

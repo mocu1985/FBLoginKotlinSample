@@ -31,6 +31,13 @@
     <string name="release_type">領補換類別</string>
     <string name="pass_title">略過</string>
     <string name="done_title">完成</string>
-    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="trust_trade_title">信任交換</string>
+    <string name="edt_uuid_title">對方ID</string>
+    <string name="edt_uuid_hint">請輸入對方ID</string>
+    <string name="edt_trust_score_title">抵押分數</string>
+    <string name="edt_trust_score_hint">請輸入抵押分數</string>
+    <string name="edt_trade_content_title">交易內容</string>
+    <string name="edt_trade_content_hint">請輸入交易內容</string>
 
 </resources>

@@ -1,7 +1,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.userprofile.ProfileEditFragment">
+    tools:context=".fragment.setting.ui.main.userprofile.ProfileEditFragment">
 
 
     <data>
@@ -26,106 +26,106 @@
             android:layout_height="match_parent">
 
 
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
+            <!--<TableLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:visibility="gone">-->
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="身分證"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="身分證"/>-->
 
-                    <EditText
-                        android:id="@+id/edt_userid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="@{model.isEdit.get()}"
-                        android:focusableInTouchMode="@{model.isEdit.get()}"
-                        android:inputType="text"
-                        android:text="@{model.account.uid}"/>
-                </TableRow>
+                    <!--<EditText-->
+                        <!--android:id="@+id/edt_userid"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:focusable="@{viewModel.isEdit.get()}"-->
+                        <!--android:focusableInTouchMode="@{viewModel.isEdit.get()}"-->
+                        <!--android:inputType="text"-->
+                        <!--android:text="@{viewModel.account.uid}"/>-->
+                <!--</TableRow>-->
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="姓名"/>
+                    <!--<TextView-->
+                        <!--android:id="@+id/textView"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="姓名"/>-->
 
-                    <EditText
-                        android:id="@+id/edt_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="@{model.isEdit.get()}"
-                        android:focusableInTouchMode="@{model.isEdit.get()}"
-                        android:inputType="text"
-                        android:text="@{model.account.userInfo.name}"/>
-                </TableRow>
+                    <!--<EditText-->
+                        <!--android:id="@+id/edt_name"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:focusable="@{viewModel.isEdit.get()}"-->
+                        <!--android:focusableInTouchMode="@{viewModel.isEdit.get()}"-->
+                        <!--android:inputType="text"-->
+                        <!--android:text="@{viewModel.account.userInfo.name}"/>-->
+                <!--</TableRow>-->
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="生日"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="生日"/>-->
 
-                    <EditText
-                        android:id="@+id/edt_bir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="@{model.isEdit.get()}"
-                        android:focusableInTouchMode="@{model.isEdit.get()}"
-                        android:inputType="text"
-                        android:text="@{model.account.userInfo.birthday}"/>
-                </TableRow>
+                    <!--<EditText-->
+                        <!--android:id="@+id/edt_bir"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:focusable="@{viewModel.isEdit.get()}"-->
+                        <!--android:focusableInTouchMode="@{viewModel.isEdit.get()}"-->
+                        <!--android:inputType="text"-->
+                        <!--android:text="@{viewModel.account.userInfo.birthday}"/>-->
+                <!--</TableRow>-->
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <!--<TableRow-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="地址"/>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="地址"/>-->
 
-                    <EditText
-                        android:id="@+id/edt_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:focusable="@{model.isEdit.get()}"
-                        android:focusableInTouchMode="@{model.isEdit.get()}"
-                        android:inputType="text"
-                        android:text="@{model.account.userInfo.address}"/>
-                </TableRow>
-            </TableLayout>
+                    <!--<EditText-->
+                        <!--android:id="@+id/edt_address"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:focusable="@{viewModel.isEdit.get()}"-->
+                        <!--android:focusableInTouchMode="@{viewModel.isEdit.get()}"-->
+                        <!--android:inputType="text"-->
+                        <!--android:text="@{viewModel.account.userInfo.address}"/>-->
+                <!--</TableRow>-->
+            <!--</TableLayout>-->
 
-            <Button
-                android:id="@+id/btn_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@{model.isEdit.get() ? @string/btn_confirm : @string/btn_edit}"
-                android:visibility="gone"/>
+            <!--<Button-->
+                <!--android:id="@+id/btn_confirm"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:text="@{viewModel.isEdit.get() ? @string/btn_confirm : @string/btn_edit}"-->
+                <!--android:visibility="gone"/>-->
 
             <!--<Button-->
                 <!--android:id="@+id/btn_logout"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
-                <!--android:onClick="@{() -> model.logout()}"-->
+                <!--android:onClick="@{() -> viewModel.logout()}"-->
                 <!--android:text="登出"-->
                 <!--android:visibility="gone"/>-->
 
