@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.FragmentParentActivity
+import epost.android.mitake.com.fbloginkotlinsample.framework.FragmentParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.MainTabActivity
 import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.activity_main.*

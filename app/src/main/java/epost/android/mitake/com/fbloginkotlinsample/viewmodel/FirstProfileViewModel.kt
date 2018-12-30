@@ -7,7 +7,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FirstProfileFragmentBinding
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.FragmentParentActivity
+import epost.android.mitake.com.fbloginkotlinsample.framework.FragmentParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.MainTabActivity
 import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.fragment_parent_activity.*

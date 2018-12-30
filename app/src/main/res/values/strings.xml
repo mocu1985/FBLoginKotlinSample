@@ -33,11 +33,14 @@
     <string name="pass_title">略過</string>
     <string name="done_title">完成</string>
 
+    <string name="trust_trade_order_id">訂單號</string>
     <string name="trust_trade_title">信任交換</string>
     <string name="edt_uuid_title">對方ID</string>
     <string name="edt_uuid_hint">請輸入對方ID</string>
     <string name="edt_trust_score_title">抵押分數</string>
     <string name="edt_trust_score_hint">請輸入抵押分數</string>
+    <string name="edt_trade_main_title">交易主旨</string>
+    <string name="edt_trade_main_hint">請輸入交易主旨</string>
     <string name="edt_trade_content_title">交易內容</string>
     <string name="edt_trade_content_hint">請輸入交易內容</string>
     <string name="alt_trust_trade_invite">信任交易邀請已送出</string>

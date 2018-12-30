@@ -1,7 +1,7 @@
 package epost.android.mitake.com.item
 
-import com.android.databinding.library.baseAdapters.BR
 import com.baurine.multitypeadapter.MultiTypeAdapter
+import epost.android.mitake.com.fbloginkotlinsample.BR
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.data.Info
 

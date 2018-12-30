@@ -11,6 +11,12 @@ class TrustTradeObject: BaseObservable {
 
     constructor()
 
+    constructor(orderId: String, trustInfo: TrustTradeInfo){
+        this.orderId = orderId;
+        this.trustInfo = trustInfo
+    }
+
+
     @get:Bindable
     var orderId: String = ""
         set(value) {

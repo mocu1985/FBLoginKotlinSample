@@ -58,6 +58,13 @@ class TrustTradeFragment : Fragment() {
             }
 
         @get:Bindable
+        var tradeTitle: String = ""
+            set(value) {
+                field = value
+                notifyPropertyChanged(BR.tradeTitle)
+            }
+
+        @get:Bindable
         var note: String = ""
             set(value) {
                 field = value

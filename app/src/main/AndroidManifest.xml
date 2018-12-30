@@ -38,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".fragment.setting.FragmentParentActivity">
+        <activity android:name=".framework.FragmentParentActivity">
         </activity>
         <activity
             android:name=".fragment.setting.ui.main.MainTabActivity"

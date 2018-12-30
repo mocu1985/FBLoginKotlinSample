@@ -27,6 +27,7 @@ class TrustTradeViewModel : ViewModel() {
         trustObj.trustInfo.apply {
             otherId = viewData.uuid
             mainScore = viewData.score
+            tradeTitle = viewData.tradeTitle
             tradeNote = viewData.note
             systemTime = TimeUtils.getNowTime()
         }

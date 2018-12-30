@@ -2,10 +2,11 @@ package epost.android.mitake.com.fbloginkotlinsample.data
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.text.TextUtils
 import epost.android.mitake.com.fbloginkotlinsample.BR
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 
-class TrustTradeInfo: BaseObservable {
+class TrustTradeInfo : BaseObservable {
 
     constructor()
 
@@ -23,6 +24,7 @@ class TrustTradeInfo: BaseObservable {
             notifyPropertyChanged(BR.otherId)
         }
 
+    //交易單系統時間
     @get:Bindable
     var systemTime: String = ""
         set(value) {
@@ -30,6 +32,7 @@ class TrustTradeInfo: BaseObservable {
             notifyPropertyChanged(BR.systemTime)
         }
 
+    //我方下注分
     @get:Bindable
     var mainScore: String = ""
         set(value) {
@@ -37,11 +40,20 @@ class TrustTradeInfo: BaseObservable {
             notifyPropertyChanged(BR.mainScore)
         }
 
+
+    //對方下注分
     @get:Bindable
-    var otherScore: String = ""
+    var otherScore: String = "對方尚未給分"
+        set(value) {
+            field = if (TextUtils.isEmpty(value)) "對方尚未給分" else value
+            notifyPropertyChanged(BR.otherScore)
+        }
+
+    @get:Bindable
+    var tradeTitle: String = ""
         set(value) {
             field = value
-            notifyPropertyChanged(BR.otherScore)
+            notifyPropertyChanged(BR.tradeTitle)
         }
 
     @get:Bindable

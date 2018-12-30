@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting
+package epost.android.mitake.com.fbloginkotlinsample.framework
 
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
