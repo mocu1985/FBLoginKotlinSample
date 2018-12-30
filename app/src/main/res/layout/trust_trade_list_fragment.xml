@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ProfileListFragment">
+        tools:context="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.TrustTradeListFragment">
 
 
     <data>
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileListViewModel"></variable>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeListViewModel"></variable>
     </data>
 
     <FrameLayout

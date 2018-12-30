@@ -1,23 +1,29 @@
 package epost.android.mitake.com.item
 
-import android.util.Log
+import android.content.Context
+import android.content.Intent
 import android.view.View
 import epost.android.mitake.com.fbloginkotlinsample.BR
 import epost.android.mitake.com.fbloginkotlinsample.R
+import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.TrustTradeDetailActivity
 
 //信任交易清單item
 class TrustTradeItem : BaseItem {
 
+    var cxt: Context
     var order: TrustTradeObject
     var orderId: String
 
 
-    constructor(orderId: String, order: TrustTradeObject) {
+    constructor(cxt: Context, orderId: String, order: TrustTradeObject) {
+        this.cxt = cxt
         this.orderId = orderId
         this.order = order
         onClickListener = View.OnClickListener {
-            Log.d("*****", order.trustInfo.tradeTitle)
+            GlobalProperties.trsutObj = order
+            cxt.startActivity(Intent(cxt, TrustTradeDetailActivity::class.java))
         }
     }
 

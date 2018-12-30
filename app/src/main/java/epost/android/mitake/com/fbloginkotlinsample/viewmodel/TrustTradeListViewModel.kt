@@ -11,19 +11,19 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeInfo
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
-import epost.android.mitake.com.fbloginkotlinsample.databinding.ProfileListFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeListFragmentBinding
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.item.FooterItem
 import epost.android.mitake.com.item.HeaderItem
 import epost.android.mitake.com.item.TrustTradeItem
 
 
-class ProfileListViewModel : ViewModel() {
+class TrustTradeListViewModel : ViewModel() {
 
     private val multiAdapter: MultiTypeAdapter = MultiTypeAdapter()
     private lateinit var headerItem: HeaderItem
     private lateinit var footerItem: FooterItem
-    lateinit var binding: ProfileListFragmentBinding
+    lateinit var binding: TrustTradeListFragmentBinding
 
     var trustTradeList = HashMap<String?, TrustTradeObject>()
 
@@ -57,7 +57,7 @@ class ProfileListViewModel : ViewModel() {
                         }
 
                         trustTradeList.forEach {
-                            var trustItem = TrustTradeItem(it.key!!, it.value)
+                            var trustItem = TrustTradeItem(context, it.key!!, it.value)
                             multiAdapter.addItem(trustItem)
                         }
 

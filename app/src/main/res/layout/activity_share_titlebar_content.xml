@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.setting.ui.main.function.trusttrade.TrustTradeActivity">
+
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        titlebar:leftType="imageButton"
+        titlebar:leftImageResource="@drawable/ic_go_back"
+        titlebar:centerText="@string/trust_trade_title"
+        titlebar:centerTextColor="#000000"
+        titlebar:centerType="textView"
+        titlebar:layout_constraintBottom_toTopOf="@+id/container"
+        titlebar:layout_constraintTop_toTopOf="parent"
+        titlebar:titleBarColor="@color/com_facebook_messenger_blue"/>
+
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        titlebar:layout_constraintBottom_toBottomOf="parent"
+        titlebar:layout_constraintTop_toTopOf="@+id/guideline4"></FrameLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        titlebar:layout_constraintGuide_percent="0.1"/>
+
+</android.support.constraint.ConstraintLayout>
