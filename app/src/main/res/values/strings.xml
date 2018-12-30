@@ -15,6 +15,7 @@
 
     <string name="btn_confirm">確定</string>
     <string name="btn_edit">編輯</string>
+    <string name="alt_hint">訊息</string>
 
     <string name="profile_title">個人資訊</string>
     <string name="next">下一步</string>
@@ -39,5 +40,7 @@
     <string name="edt_trust_score_hint">請輸入抵押分數</string>
     <string name="edt_trade_content_title">交易內容</string>
     <string name="edt_trade_content_hint">請輸入交易內容</string>
+    <string name="alt_trust_trade_invite">信任交易邀請已送出</string>
+    <string name="alt_trust_trade_invite_fail">信任交易邀請失敗，請重新確認</string>
 
 </resources>

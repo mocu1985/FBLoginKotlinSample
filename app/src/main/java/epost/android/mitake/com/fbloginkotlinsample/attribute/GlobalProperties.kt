@@ -9,6 +9,7 @@ class GlobalProperties {
         lateinit var account: Account
 
         val ACCOUNT_ROOT = "users"
+        val TRUST_TRADE_ROOT = "trust_trade"
         val ACCOUNT_INFO = "userInfo"
     }
 }

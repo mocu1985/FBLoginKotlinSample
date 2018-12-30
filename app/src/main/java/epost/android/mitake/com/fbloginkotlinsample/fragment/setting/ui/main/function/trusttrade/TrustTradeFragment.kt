@@ -29,6 +29,7 @@ class TrustTradeFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(TrustTradeViewModel::class.java)
 
         viewModel.viewData = ViewData()
+        viewModel.cxt = activity!!
 
         binding.model = viewModel
 
