@@ -14,5 +14,7 @@ class GlobalProperties {
         val ACCOUNT_ROOT = "users"
         val TRUST_TRADE_ROOT = "trust_trade"
         val ACCOUNT_INFO = "userInfo"
+        val TRADING = "trading"
+        val TRADE_DONE = "trade_done"
     }
 }

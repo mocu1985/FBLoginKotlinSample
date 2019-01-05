@@ -12,6 +12,7 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.UserIdprofileFragmentBindingImpl
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.UserIdprofileViewModel
+import mma.security.component.diagnostics.Debuk
 
 class UserIDProfileFragment : Fragment() {
 
@@ -37,7 +38,7 @@ class UserIDProfileFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(UserIdprofileViewModel::class.java)
         // TODO: Use the ViewModel
 
-        Log.d("*****", GlobalProperties.account.userInfo.name)
+        Debuk.WriteLine("*****", GlobalProperties.account.userInfo.name)
     }
 
 }

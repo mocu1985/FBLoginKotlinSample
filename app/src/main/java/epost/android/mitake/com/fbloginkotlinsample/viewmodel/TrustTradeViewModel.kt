@@ -10,6 +10,8 @@ import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.trusttrade.TrustTradeFragment
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.fbloginkotlinsample.util.TimeUtils
+import java.text.DecimalFormat
+
 
 class TrustTradeViewModel : ViewModel() {
 
@@ -34,6 +36,8 @@ class TrustTradeViewModel : ViewModel() {
 
         val uidRef =
             FirebaseFirestore.getInstance().collection(GlobalProperties.TRUST_TRADE_ROOT)
+                .document(GlobalProperties.currect_id)
+                .collection(GlobalProperties.TRADING)
                 .document(trustObj.orderId)
 
         uidRef.set(trustObj.trustInfo)
@@ -41,7 +45,7 @@ class TrustTradeViewModel : ViewModel() {
                 updateTrustScore()
             }
             .addOnFailureListener {
-                JDialog.showDialog(cxt, cxt.getString(R.string.alt_hint), cxt.getString(R.string.alt_trust_trade_invite))
+                JDialog.showMessage(cxt, cxt.getString(R.string.alt_hint), cxt.getString(R.string.alt_trust_trade_invite_fail))
             }
 
 
@@ -50,14 +54,16 @@ class TrustTradeViewModel : ViewModel() {
     //更新帳戶分數
     fun updateTrustScore() {
         GlobalProperties.account.userInfo.apply {
-            trustScore = (trustScore!!.toFloat() - viewData.score.toFloat()).toString()
+            var score = trustScore!!.toFloat() - viewData.score.toFloat()
+            val df = DecimalFormat("#.##")
+            trustScore = df.format(score)
         }
         var path = "${GlobalProperties.ACCOUNT_ROOT}/${GlobalProperties.currect_id}"
         val modifyRef = FirebaseFirestore.getInstance().document(path)
 
         modifyRef.update("userInfo.trustScore", GlobalProperties.account.userInfo.trustScore)
             .addOnSuccessListener {
-                JDialog.showDialog(
+                JDialog.showMessage(
                     cxt, cxt.getString(R.string.alt_hint), cxt.getString(R.string.alt_trust_trade_invite)
                 ) { _, _ -> cxt.onBackPressed() }
             }

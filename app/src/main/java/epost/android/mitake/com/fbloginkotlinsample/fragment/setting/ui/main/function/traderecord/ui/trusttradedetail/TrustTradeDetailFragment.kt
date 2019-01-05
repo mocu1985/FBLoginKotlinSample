@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeDetailFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeDetailViewModel
 
 //交易紀錄-明細
 class TrustTradeDetailFragment : Fragment() {
@@ -29,10 +30,6 @@ class TrustTradeDetailFragment : Fragment() {
         binding.model = viewModel
 
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
 }

@@ -22,12 +22,12 @@ public class TimeUtils {
     }
 
     /**
-     * 獲取時間戳
+     * 獲取當天日期
      *
      * @return 獲取時間戳
      */
     public static String getTimeString() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         Calendar calendar = Calendar.getInstance();
         return df.format(calendar.getTime());
     }

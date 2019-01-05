@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailViewModel"/>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeDetailViewModel"/>
 
     </data>
 
@@ -293,6 +293,7 @@
             android:layout_marginTop="8dp"
             android:background="@color/background_red"
             android:text="取消交易"
+            android:onClick="@{() -> model.cancelOrder()}"
             android:textColor="@color/text_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

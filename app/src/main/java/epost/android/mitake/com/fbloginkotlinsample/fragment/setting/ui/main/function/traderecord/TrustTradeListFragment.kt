@@ -3,6 +3,7 @@ package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.fu
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +13,7 @@ import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeListViewModel
 
 //交易紀錄-進行中
-class TrustTradeListFragment : ParentFragment() {
-
+class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: TrustTradeListViewModel
     private lateinit var binding: TrustTradeListFragmentBinding
 
@@ -26,11 +26,20 @@ class TrustTradeListFragment : ParentFragment() {
 
         viewModel = ViewModelProviders.of(this).get(TrustTradeListViewModel::class.java)
         viewModel.binding = binding
+
         viewModel.initView(context!!)
+
 
         initData()
 
         return binding.root
+    }
+
+    override fun onRefresh() {
+        binding.swpLayout.isRefreshing = true
+        viewModel.multiAdapter.clearItems()
+        viewModel.loadAccountsData(context!!)
+
     }
 
 }

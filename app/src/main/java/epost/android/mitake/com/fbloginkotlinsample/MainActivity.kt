@@ -3,7 +3,6 @@ package epost.android.mitake.com.fbloginkotlinsample
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -15,10 +14,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
-import epost.android.mitake.com.fbloginkotlinsample.framework.FragmentParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.MainTabActivity
+import epost.android.mitake.com.fbloginkotlinsample.framework.FragmentParentActivity
 import epost.android.mitake.com.kotlinsample.Account
 import kotlinx.android.synthetic.main.activity_main.*
+import mma.security.component.diagnostics.Debuk
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (BuildConfig.isShowLog) Debuk.OpenWriteDebukMessage()
+
         setContentView(R.layout.activity_main)
 
         mAuth = FirebaseAuth.getInstance()
@@ -62,11 +65,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancel() {
-                Log.d(TAG, "onCancel")
+                Debuk.WriteLine(TAG, "onCancel")
             }
 
             override fun onError(error: FacebookException?) {
-                Log.d(TAG, error.toString())
+                Debuk.WriteLine(TAG, error.toString())
 
             }
 
@@ -81,7 +84,7 @@ class MainActivity : AppCompatActivity() {
                 if (p0.isSuccessful) {
                     updateLoginProcess()
                 } else {
-                    Log.d(TAG, "FB 登入失敗")
+                    Debuk.WriteLine(TAG, "FB 登入失敗")
                 }
             }
 
@@ -99,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 if (p0.isSuccessful) {
                     var document = p0.result!!
                     if (document.exists()) {
-                        Log.d(TAG, document.data.toString())
+                        Debuk.WriteLine(TAG, document.data.toString())
                         GlobalProperties.account = document.toObject(Account::class.java)!!
                         var intent = Intent(this@MainActivity, MainTabActivity::class.java)
                         startActivity(intent)
@@ -110,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         } else {
-            Log.d(TAG, "user null")
+            Debuk.WriteLine(TAG, "user null")
             if (firebaseUser == null) {
                 addFirstAccount(GlobalProperties.currect_id, firebaseUser, uidRef)
             }
@@ -124,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
 //        uidRef.set(GlobalProperties.account)
 //            .addOnSuccessListener {
-//                Log.d(TAG, "註冊成功")
+//                Debuk.WriteLine(TAG, "註冊成功")
 //                var intent = Intent(this@MainActivity, MainTabActivity::class.java)
 //                startActivity(intent)
 //            }
