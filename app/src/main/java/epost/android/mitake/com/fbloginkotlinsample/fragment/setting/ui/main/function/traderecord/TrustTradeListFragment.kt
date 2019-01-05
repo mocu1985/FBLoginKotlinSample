@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeListFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeListViewModel
 
@@ -18,7 +19,7 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
     private lateinit var binding: TrustTradeListFragmentBinding
 
     override fun initData() {
-        viewModel?.loadAccountsData(context!!)
+        viewModel?.loadAccountsData()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -26,19 +27,22 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
 
         viewModel = ViewModelProviders.of(this).get(TrustTradeListViewModel::class.java)
         viewModel.binding = binding
+        viewModel.act = (activity as ParentActivity?)!!
 
-        viewModel.initView(context!!)
-
-
-        initData()
+        viewModel.initView()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initData()
     }
 
     override fun onRefresh() {
         binding.swpLayout.isRefreshing = true
         viewModel.multiAdapter.clearItems()
-        viewModel.loadAccountsData(context!!)
+        viewModel.loadAccountsData()
 
     }
 

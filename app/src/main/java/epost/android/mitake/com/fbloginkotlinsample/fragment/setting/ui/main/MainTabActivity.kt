@@ -3,15 +3,14 @@ package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AppCompatActivity
-import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.TradeRecordMainFragment
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.userprofile.ProfileEditFragment
+import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import kotlinx.android.synthetic.main.activity_main_tab.*
 
-class MainTabActivity : AppCompatActivity() {
+class MainTabActivity : ParentActivity() {
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -22,9 +21,6 @@ class MainTabActivity : AppCompatActivity() {
      * [android.support.v4.app.FragmentStatePagerAdapter].
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-    companion object {
-        val rootRef = FirebaseFirestore.getInstance()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

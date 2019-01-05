@@ -1,7 +1,6 @@
 package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
-import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.baurine.multitypeadapter.MultiTypeAdapter
@@ -11,6 +10,7 @@ import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeInfo
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeListFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.item.FooterItem
 import epost.android.mitake.com.item.HeaderItem
@@ -18,17 +18,18 @@ import epost.android.mitake.com.item.TrustTradeItem
 import mma.security.component.diagnostics.Debuk
 
 
+//class TrustTradeListViewModel : ViewModel(), ParentActivity.ActivityCallBack {
 class TrustTradeListViewModel : ViewModel() {
-
     val multiAdapter: MultiTypeAdapter = MultiTypeAdapter()
     private lateinit var headerItem: HeaderItem
     private lateinit var footerItem: FooterItem
     lateinit var binding: TrustTradeListFragmentBinding
+    lateinit var act: ParentActivity
 
     var trustTradeList = HashMap<String?, TrustTradeObject>()
 
-    fun refreshData(context: Context) {
-        loadAccountsData(context, true)
+    fun refreshData() {
+        loadAccountsData(true)
     }
 
     fun retrieveItems() {
@@ -43,8 +44,8 @@ class TrustTradeListViewModel : ViewModel() {
     }
 
 
-    fun loadAccountsData(context: Context, isRefresh: Boolean = false) {
-        if (multiAdapter.items.size == 0 || isRefresh) {
+    fun loadAccountsData(isRefresh: Boolean = false) {
+        if (multiAdapter.items.size == 0 || isRefresh || GlobalProperties.doRefresh) {
             var mDataRef = FirebaseFirestore.getInstance()
             mDataRef.collection(GlobalProperties.TRUST_TRADE_ROOT)
                 .document(GlobalProperties.currect_id)
@@ -53,6 +54,7 @@ class TrustTradeListViewModel : ViewModel() {
                 .get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
+                        trustTradeList.clear()
                         multiAdapter.clearItems()
 
                         it.getResult()!!.forEach {
@@ -65,7 +67,7 @@ class TrustTradeListViewModel : ViewModel() {
                         }
 
                         trustTradeList.forEach {
-                            var trustItem = TrustTradeItem(context, it.key!!, it.value)
+                            var trustItem = TrustTradeItem(act, it.key!!, it.value, this)
                             multiAdapter.addItem(trustItem)
                         }
 
@@ -75,17 +77,18 @@ class TrustTradeListViewModel : ViewModel() {
                         binding.recyView.adapter.notifyDataSetChanged()
 
                     } else {
-                        JDialog.showDialog(context!!, context.getString(R.string.alt_hint), "查無資料")
+                        JDialog.showDialog(act!!, act.getString(R.string.alt_hint), "查無資料")
                         multiAdapter.addItem(FooterItem().setState(FooterItem.ERROR))
                     }
 
                     binding.swpLayout.isRefreshing = false
+                    GlobalProperties.doRefresh = false
                 }
         }
     }
 
 
-    fun initView(context: Context) {
+    fun initView() {
         binding.swpLayout.setColorSchemeResources(
             android.R.color.holo_red_light,
             android.R.color.holo_blue_light,
@@ -93,10 +96,10 @@ class TrustTradeListViewModel : ViewModel() {
             android.R.color.holo_orange_light
         )
 
-        binding.swpLayout.setOnRefreshListener { refreshData(context) }
+        binding.swpLayout.setOnRefreshListener { refreshData() }
 
         binding.recyView.setHasFixedSize(true)
-        val llm = LinearLayoutManager(context)
+        val llm = LinearLayoutManager(act)
         binding.recyView.layoutManager = llm
         binding.recyView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
@@ -112,5 +115,12 @@ class TrustTradeListViewModel : ViewModel() {
 
     private fun loadMoreData() {
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        when (requestCode) {
+//            GlobalProperties.TRADE_ORDER_DELETE ->
+//                if(resultCode == Activity.RESULT_OK) loadAccountsData(true)
+//        }
+//    }
 
 }

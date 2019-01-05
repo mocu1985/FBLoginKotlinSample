@@ -27,6 +27,7 @@ class TrustTradeDetailFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(TrustTradeDetailViewModel::class.java)
         viewModel.order = GlobalProperties.trsutObj
+        viewModel.act = activity!!
         binding.model = viewModel
 
         return binding.root

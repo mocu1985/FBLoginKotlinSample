@@ -65,7 +65,9 @@ class TrustTradeViewModel : ViewModel() {
             .addOnSuccessListener {
                 JDialog.showMessage(
                     cxt, cxt.getString(R.string.alt_hint), cxt.getString(R.string.alt_trust_trade_invite)
-                ) { _, _ -> cxt.onBackPressed() }
+                ) { _, _ ->
+                    GlobalProperties.doRefresh = true
+                    cxt.onBackPressed() }
             }
     }
 }

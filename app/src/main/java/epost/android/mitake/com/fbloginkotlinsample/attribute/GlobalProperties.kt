@@ -11,10 +11,16 @@ class GlobalProperties {
 
         lateinit var trsutObj: TrustTradeObject
 
+        var doRefresh = false   //是否需要刷新交易清單
+
         val ACCOUNT_ROOT = "users"
         val TRUST_TRADE_ROOT = "trust_trade"
         val ACCOUNT_INFO = "userInfo"
         val TRADING = "trading"
         val TRADE_DONE = "trade_done"
+
+
+
+        val TRADE_ORDER_DELETE = 1
     }
 }
