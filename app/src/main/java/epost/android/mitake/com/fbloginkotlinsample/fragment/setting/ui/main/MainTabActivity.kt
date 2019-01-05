@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.TrustTradeListFragment
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.TradeRecordMainFragment
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.userprofile.ProfileEditFragment
 import kotlinx.android.synthetic.main.activity_main_tab.*
 
@@ -36,7 +36,7 @@ class MainTabActivity : AppCompatActivity() {
 
 
         mSectionsPagerAdapter!!.addFragment(ProfileEditFragment())
-        mSectionsPagerAdapter!!.addFragment(TrustTradeListFragment())
+        mSectionsPagerAdapter!!.addFragment(TradeRecordMainFragment())
         mSectionsPagerAdapter!!.addFragment()
 
         // Set up the ViewPager with the sections adapter.

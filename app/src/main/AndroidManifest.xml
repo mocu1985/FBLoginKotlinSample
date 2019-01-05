@@ -46,7 +46,7 @@
         </activity>
         <activity android:name=".fragment.setting.ui.main.function.trusttrade.TrustTradeActivity">
         </activity>
-        <activity android:name=".fragment.setting.ui.main.function.ruling.TrustTradeDetailActivity">
+        <activity android:name=".fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailActivity">
         </activity>
     </application>
 

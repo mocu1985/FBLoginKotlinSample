@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ui.trusttradedetail.TrustTradeDetailViewModel"/>
+            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailViewModel"/>
 
     </data>
 

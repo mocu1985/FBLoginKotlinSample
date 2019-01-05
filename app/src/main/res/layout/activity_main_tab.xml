@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
 
-        <android.support.v4.view.ViewPager
+        <epost.android.mitake.com.fbloginkotlinsample.framework.widget.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorColor="#FFD000"
+                app:tabMode="fixed"
                 app:tabSelectedTextColor="#FFFFFF"
                 app:tabTextColor="@color/com_facebook_device_auth_text">
 
@@ -39,19 +39,22 @@
                     android:id="@+id/tabItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/messenger_button_white_bg_round"/>
+                    android:icon="@drawable/messenger_button_white_bg_round"
+                    android:text="個人資訊"/>
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/com_facebook_button_icon"/>
+                    android:icon="@drawable/com_facebook_button_icon"
+                    android:text="交易紀錄"/>
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/com_facebook_button_like_icon_selected"/>
+                    android:icon="@drawable/com_facebook_button_like_icon_selected"
+                    android:text="首頁"/>
 
             </android.support.design.widget.TabLayout>
         </android.support.design.widget.AppBarLayout>

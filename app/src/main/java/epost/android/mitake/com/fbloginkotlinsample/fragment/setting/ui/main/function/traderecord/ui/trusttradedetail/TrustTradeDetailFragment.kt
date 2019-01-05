@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ui.trusttradedetail
+package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -11,6 +11,7 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeDetailFragmentBinding
 
+//交易紀錄-明細
 class TrustTradeDetailFragment : Fragment() {
 
     companion object {

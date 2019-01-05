@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
@@ -14,10 +15,10 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="5dp"
-        android:onClick="@{item.onClickListener}"
-        android:background="@color/bar_pressed_black5">
+        android:background="@color/bar_pressed_black5"
+        android:onClick="@{item.onClickListener}">
 
 
         <android.support.constraint.Guideline
@@ -30,13 +31,14 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
-            android:layout_width="103dp"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/space_profile_icon"
-            app:layout_constraintBottom_toTopOf="@+id/guideline22"
+            app:layout_constraintBottom_toTopOf="@+id/guideline21"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -45,7 +47,7 @@
             android:id="@+id/tv_id"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -61,7 +63,7 @@
         <TableLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"

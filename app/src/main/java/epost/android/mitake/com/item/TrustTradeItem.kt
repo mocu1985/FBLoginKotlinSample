@@ -7,7 +7,7 @@ import epost.android.mitake.com.fbloginkotlinsample.BR
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.TrustTradeDetailActivity
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailActivity
 
 //信任交易清單item
 class TrustTradeItem : BaseItem {

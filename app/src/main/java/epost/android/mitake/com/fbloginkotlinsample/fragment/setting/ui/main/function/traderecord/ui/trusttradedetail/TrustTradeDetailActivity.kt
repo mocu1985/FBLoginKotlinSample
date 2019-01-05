@@ -1,8 +1,8 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling
+package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail
 
 import android.os.Bundle
 import epost.android.mitake.com.fbloginkotlinsample.R
-import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ui.trusttradedetail.TrustTradeDetailFragment
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailFragment
 import epost.android.mitake.com.fbloginkotlinsample.framework.TitleBarParentActivity
 import kotlinx.android.synthetic.main.activity_share_titlebar_content.*
 
