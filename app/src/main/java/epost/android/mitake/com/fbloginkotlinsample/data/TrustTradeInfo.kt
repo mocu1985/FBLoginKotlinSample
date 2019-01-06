@@ -64,7 +64,7 @@ class TrustTradeInfo : BaseObservable {
         }
 
 
-    //狀態: 0:新建交易 1:雙方確認 3:完成
+    //狀態: 0:新建交易 1:雙方確認 3:完成 4:申訴中
     @get:Bindable
     var orderState: String = "0"
         set(value) {

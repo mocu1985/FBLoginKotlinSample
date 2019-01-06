@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingInfo
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.fbloginkotlinsample.util.TimeUtils
@@ -60,6 +62,20 @@ class TrustTradeDetailViewModel : ViewModel() {
 
     fun rulingClick() {
         //TODO Functions 修改狀態變成申訴單
+        var rulingInfo = RulingInfo()
+        rulingInfo.orderId = order.orderId
+        var rulingObject = RulingObject(rulingInfo)
+
+        var ref = FirebaseFirestore.getInstance().collection(GlobalProperties.RULING_ROOT)
+            .document(GlobalProperties.currect_id)
+            .collection(GlobalProperties.RULING)
+            .document(rulingObject.rulingId)
+            .set(rulingInfo)
+            .addOnSuccessListener {
+                JDialog.showMessage(act, act.getString(R.string.alt_hint), "已完成申訴") { dialog, which ->
+                    act.onBackPressed()
+                }
+            }
 
     }
 

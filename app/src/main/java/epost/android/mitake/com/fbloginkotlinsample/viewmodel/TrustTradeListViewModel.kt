@@ -63,7 +63,7 @@ class TrustTradeListViewModel : ViewModel() {
 
                             var trustOjb = it.toObject(TrustTradeInfo::class.java)
                             var tObj = TrustTradeObject(it.id, trustOjb)
-                            if (tObj.trustInfo.orderState != "3" && !isDone)    //進行中
+                            if (tObj.trustInfo.orderState != "3" && tObj.trustInfo.orderState != "4" && !isDone)    //進行中
                                 trustTradeList.set(it.id, tObj)
                             else if (tObj.trustInfo.orderState == "3" && isDone)    //已完成
                                 trustTradeList.set(it.id, tObj)
