@@ -43,9 +43,9 @@ class TrustTradeInfo : BaseObservable {
 
     //對方下注分
     @get:Bindable
-    var otherScore: String = "對方尚未給分"
+    var otherScore: String = "等待對方確認"
         set(value) {
-            field = if (TextUtils.isEmpty(value)) "對方尚未給分" else value
+            field = if (TextUtils.isEmpty(value)) "等待對方確認" else value
             notifyPropertyChanged(BR.otherScore)
         }
 

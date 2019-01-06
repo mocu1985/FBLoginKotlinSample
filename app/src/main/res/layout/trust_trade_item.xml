@@ -52,7 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="@={item.order.trustInfo.otherId}"
+            android:text="@{item.checkState()}"
             android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline21"
             app:layout_constraintEnd_toStartOf="@+id/guideline19"
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={item.order.trustInfo.otherScore}"
+                    android:text="@={item.order.trustInfo.mainScore}"
                     android:textSize="18sp"/>
 
             </TableRow>

@@ -17,6 +17,18 @@ import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeListView
 class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: TrustTradeListViewModel
     private lateinit var binding: TrustTradeListFragmentBinding
+    private var isDone = false  //是否已完成清單
+
+
+    companion object {
+        fun newIntace(isDone:Boolean): TrustTradeListFragment {
+            var fragment = TrustTradeListFragment()
+            var bundle = Bundle()
+            bundle.putBoolean("isDone", isDone)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 
     override fun initData() {
         viewModel?.loadAccountsData()
@@ -27,6 +39,7 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
 
         viewModel = ViewModelProviders.of(this).get(TrustTradeListViewModel::class.java)
         viewModel.binding = binding
+        viewModel.isDone = arguments!!.getBoolean("isDone")
         viewModel.act = (activity as ParentActivity?)!!
 
         viewModel.initView()

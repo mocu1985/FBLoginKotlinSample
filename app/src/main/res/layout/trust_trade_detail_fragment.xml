@@ -8,6 +8,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="model"
             type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeDetailViewModel"/>
@@ -54,21 +56,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.1"/>
+            app:layout_constraintGuide_percent="0.05"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.20"/>
+            app:layout_constraintGuide_percent="0.16"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25"/>
+            app:layout_constraintGuide_percent="0.21"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
@@ -148,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:text="@={model.order.trustInfo.orderState}"
+                    android:text="@{model.checkState()}"
                     android:textSize="18sp"/>
 
             </TableRow>
@@ -176,27 +178,27 @@
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:text="@string/edt_trust_score_title"
-                    android:textColor="@color/text_black"
-                    android:textSize="18sp"/>
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:text="@string/edt_trust_score_title"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="18sp"/>-->
 
-                <TextView
-                    android:id="@+id/tv_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@={model.order.trustInfo.mainScore}"
-                    android:textSize="18sp"/>
+            <!--<TextView-->
+            <!--android:id="@+id/tv_score"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@={model.order.trustInfo.mainScore}"-->
+            <!--android:textSize="18sp"/>-->
 
-            </TableRow>
+            <!--</TableRow>-->
 
 
             <TableRow
@@ -263,18 +265,31 @@
         </TableLayout>
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/edt_trust_score_title"
+            android:textColor="@color/text_black"
+            app:layout_constraintBottom_toTopOf="@+id/guideline23"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
+            app:layout_constraintStart_toStartOf="@+id/guideline9"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"/>
+
+        <TextView
             android:id="@+id/tv_trust_score"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:text="@={model.order.trustInfo.otherScore}"
+            android:text="@={model.order.trustInfo.mainScore}"
             android:textSize="23sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toStartOf="@+id/guideline10"
             app:layout_constraintStart_toStartOf="@+id/guideline9"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline23"/>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline20"
@@ -282,6 +297,42 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.85"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="@{model.checkStateCancelUI() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline20">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/background_red"
+                android:onClick="@{() -> model.rulingClick()}"
+                android:text="交易申訴"
+                android:textColor="@color/text_white"
+                android:visibility="@{model.checkRulingBtnUI()? View.VISIBLE : View.GONE}"/>
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@color/background_green"
+                android:onClick="@{() -> model.confirmClick()}"
+                android:text="確認交易"
+                android:textColor="@color/text_white"
+                android:visibility="@{model.checkConfirmBtnUI()? View.VISIBLE : View.GONE}"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_click"
@@ -292,13 +343,21 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/background_red"
-            android:text="取消交易"
             android:onClick="@{() -> model.cancelOrder()}"
+            android:text="取消交易"
             android:textColor="@color/text_white"
+            android:visibility="@{model.checkStateCancelUI() ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline20"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25"/>
 
 
     </android.support.constraint.ConstraintLayout>

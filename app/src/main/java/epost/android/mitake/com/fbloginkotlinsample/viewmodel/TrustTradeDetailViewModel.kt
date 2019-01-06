@@ -26,6 +26,7 @@ class TrustTradeDetailViewModel : ViewModel() {
     }
 
     fun doDelete() {
+        //TODO Functions 歸還分數
         var ref = FirebaseFirestore.getInstance()
             .collection(GlobalProperties.TRUST_TRADE_ROOT)
             .document(GlobalProperties.currect_id)
@@ -33,7 +34,7 @@ class TrustTradeDetailViewModel : ViewModel() {
             .document(order.orderId)
             .delete()
             .addOnSuccessListener {
-//                act.setResult(Activity.RESULT_OK)
+                //                act.setResult(Activity.RESULT_OK)
 //                act.finish()
 
                 GlobalProperties.doRefresh = true
@@ -43,5 +44,56 @@ class TrustTradeDetailViewModel : ViewModel() {
                 JDialog.showMessage(act, act.getString(R.string.alt_hint), "刪除失敗")
             }
 
+    }
+
+    fun confirmClick() {
+        //TODO Functions 確認訂單修改狀態
+        JDialog.showDialog(
+            act, act.getString(R.string.alt_hint), "是否確認完成交易？"
+        ) { dialog, which ->
+            order.trustInfo.orderState = if (order.trustInfo.orderState == "1") "2" else "3"
+
+            //TODO 結果頁 or 直接返回
+            act.onBackPressed()
+        }
+    }
+
+    fun rulingClick() {
+        //TODO Functions 修改狀態變成申訴單
+
+    }
+
+    fun checkStateCancelUI(): Boolean {
+        return when (order.trustInfo.orderState) {
+            "0" -> true
+            else -> false
+        }
+    }
+
+    fun checkConfirmBtnUI(): Boolean {
+        return when (order.trustInfo.orderState) {
+            "2" -> false
+            "3" -> false
+            else -> true
+        }
+    }
+
+    fun checkRulingBtnUI(): Boolean {
+        return when (order.trustInfo.orderState) {
+            "3" -> false
+            else -> true
+        }
+    }
+
+    fun checkState(): String {
+        return when (order.trustInfo.orderState) {
+            "0" -> "等待對方確認"
+            "1" -> "處理中"
+            "2" -> "已確認"
+            "3" -> "已完成"
+            else -> {
+                "裁決中"
+            }
+        }
     }
 }

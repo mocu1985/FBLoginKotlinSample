@@ -11,6 +11,7 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TradeRecordMainFragmentBinding
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TradeRecordMainViewModel
 import kotlinx.android.synthetic.main.activity_main_tab.*
 
 //交易紀錄主畫面
@@ -29,8 +30,8 @@ class TradeRecordMainFragment : ParentFragment() {
         viewModel = ViewModelProviders.of(this).get(TradeRecordMainViewModel::class.java)
 
         mSectionsPagerAdapter = SectionsPagerAdapter(childFragmentManager)
-        mSectionsPagerAdapter!!.addFragment(TrustTradeListFragment())
-        mSectionsPagerAdapter!!.addFragment()
+        mSectionsPagerAdapter!!.addFragment(TrustTradeListFragment.newIntace(false))
+        mSectionsPagerAdapter!!.addFragment(TrustTradeListFragment.newIntace(true))
         binding.viewPager.adapter = mSectionsPagerAdapter
 
         binding.viewPager.addOnPageChangeListener(object : TabLayout.TabLayoutOnPageChangeListener(tabs) {

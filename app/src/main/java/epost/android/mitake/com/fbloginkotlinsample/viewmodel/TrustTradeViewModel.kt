@@ -42,6 +42,7 @@ class TrustTradeViewModel : ViewModel() {
 
         uidRef.set(trustObj.trustInfo)
             .addOnSuccessListener {
+                //TODO 使用Functions 發推播、更新用戶分數
                 updateTrustScore()
             }
             .addOnFailureListener {

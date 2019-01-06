@@ -48,6 +48,8 @@ public class Info : BaseObservable {
             notifyPropertyChanged(BR.uuid)
         }
 
+    //TODO 增加 完成交易統計、爭議統計
+
     constructor()
     constructor(name: String, birthday: String, sex: String = "男", address: String = "") {
         this.name = name

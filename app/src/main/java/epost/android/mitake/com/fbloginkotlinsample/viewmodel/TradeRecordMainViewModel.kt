@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord
+package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel;
 

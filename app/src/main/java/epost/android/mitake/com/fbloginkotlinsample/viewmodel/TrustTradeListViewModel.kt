@@ -25,6 +25,7 @@ class TrustTradeListViewModel : ViewModel() {
     private lateinit var footerItem: FooterItem
     lateinit var binding: TrustTradeListFragmentBinding
     lateinit var act: ParentActivity
+    var isDone = false
 
     var trustTradeList = HashMap<String?, TrustTradeObject>()
 
@@ -56,14 +57,16 @@ class TrustTradeListViewModel : ViewModel() {
                     if (it.isSuccessful) {
                         trustTradeList.clear()
                         multiAdapter.clearItems()
-
+                        Debuk.WriteLine("****", "isDone: " + isDone)
                         it.getResult()!!.forEach {
                             Debuk.WriteLine("*****", it.id + " : " + it.getData())
 
                             var trustOjb = it.toObject(TrustTradeInfo::class.java)
                             var tObj = TrustTradeObject(it.id, trustOjb)
-                            trustTradeList.set(it.id, tObj)
-
+                            if (tObj.trustInfo.orderState != "3" && !isDone)    //進行中
+                                trustTradeList.set(it.id, tObj)
+                            else if (tObj.trustInfo.orderState == "3" && isDone)    //已完成
+                                trustTradeList.set(it.id, tObj)
                         }
 
                         trustTradeList.forEach {
@@ -71,11 +74,7 @@ class TrustTradeListViewModel : ViewModel() {
                             multiAdapter.addItem(trustItem)
                         }
 
-//                        if (multiAdapter.items.isEmpty()) {
-//                            binding.tvMsg.visibility = View.VISIBLE
-//                        }
                         binding.recyView.adapter.notifyDataSetChanged()
-
                     } else {
                         JDialog.showDialog(act!!, act.getString(R.string.alt_hint), "查無資料")
                         multiAdapter.addItem(FooterItem().setState(FooterItem.ERROR))
@@ -84,6 +83,8 @@ class TrustTradeListViewModel : ViewModel() {
                     binding.swpLayout.isRefreshing = false
                     GlobalProperties.doRefresh = false
                 }
+        } else {
+            binding.recyView.adapter.notifyDataSetChanged()
         }
     }
 

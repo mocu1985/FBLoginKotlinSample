@@ -37,4 +37,16 @@ class TrustTradeItem : BaseItem {
     override fun getVariableId(): Int {
         return BR.item
     }
+
+    fun checkState(): String {
+        return when (order.trustInfo.orderState) {
+            "0" ->  "等待對方確認"
+            "1" ->  "處理中"
+            "2" ->  "已確認"
+            "3" ->  "已完成"
+            else -> {
+                "裁決中"
+            }
+        }
+    }
 }
