@@ -10,7 +10,6 @@ class RulingItem : BaseItem {
     private lateinit var act: ParentActivity
     var rulingObject: RulingObject
 
-
     constructor(rulingObject: RulingObject) {
         this.rulingObject = rulingObject
     }
@@ -28,4 +27,23 @@ class RulingItem : BaseItem {
     override fun getVariableId(): Int {
         return BR.item
     }
+
+    fun getVoteResult(): Int {
+        var info = rulingObject.rulingInfo
+        var total = info.positiveCount + info.negativeCount
+        return info.positiveCount / total
+    }
+
+    fun getPositivePercent(): String {
+        var info = rulingObject.rulingInfo
+        var total = info.positiveCount + info.negativeCount
+        return (info.positiveCount * 100 / total).toString() + "%"
+    }
+
+    fun getNagativePercent(): String {
+        var info = rulingObject.rulingInfo
+        var total = info.positiveCount + info.negativeCount
+        return (info.negativeCount * 100 / total).toString() + "%"
+    }
+
 }

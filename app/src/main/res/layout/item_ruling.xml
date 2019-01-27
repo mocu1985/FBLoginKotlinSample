@@ -9,6 +9,7 @@
         <variable
             name="item"
             type="epost.android.mitake.com.item.RulingItem"/>
+
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -89,8 +90,9 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+            android:id="@+id/vote_progress"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="33dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
@@ -114,6 +116,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline28"
             app:layout_constraintTop_toTopOf="@+id/guideline27"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="@{item.positivePercent}"
+            android:textColor="@color/text_white"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vote_progress"
+            app:layout_constraintStart_toStartOf="@+id/vote_progress"
+            app:layout_constraintTop_toTopOf="@+id/vote_progress"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="@{item.nagativePercent}"
+            android:textColor="@color/text_white"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vote_progress"
+            app:layout_constraintEnd_toEndOf="@+id/vote_progress"
+            app:layout_constraintTop_toTopOf="@+id/vote_progress"/>
 
 
     </android.support.constraint.ConstraintLayout>
