@@ -2,6 +2,7 @@ package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
@@ -63,20 +64,32 @@ class TrustTradeDetailViewModel : ViewModel() {
     fun rulingClick() {
         //TODO Functions 修改狀態變成申訴單
         var rulingInfo = RulingInfo()
+        rulingInfo.title = order.trustInfo.tradeTitle
+        rulingInfo.endTime = TimeUtils.getLongTime(72)
+        rulingInfo.systemTime = Timestamp.now()
         rulingInfo.orderId = order.orderId
-        var rulingObject = RulingObject(rulingInfo)
+        var rulingObject = RulingObject(TimeUtils.getTimeTemp(), rulingInfo)
 
         var ref = FirebaseFirestore.getInstance().collection(GlobalProperties.RULING_ROOT)
-            .document(GlobalProperties.currect_id)
-            .collection(GlobalProperties.RULING)
             .document(rulingObject.rulingId)
             .set(rulingInfo)
+            .addOnSuccessListener {
+                changeRuling()
+            }
+
+    }
+
+    fun changeRuling() {
+        FirebaseFirestore.getInstance().collection(GlobalProperties.TRUST_TRADE_ROOT)
+            .document(GlobalProperties.currect_id)
+            .collection(GlobalProperties.TRADING)
+            .document(order.orderId)
+            .update("orderState", "4")
             .addOnSuccessListener {
                 JDialog.showMessage(act, act.getString(R.string.alt_hint), "已完成申訴") { dialog, which ->
                     act.onBackPressed()
                 }
             }
-
     }
 
     fun checkStateCancelUI(): Boolean {

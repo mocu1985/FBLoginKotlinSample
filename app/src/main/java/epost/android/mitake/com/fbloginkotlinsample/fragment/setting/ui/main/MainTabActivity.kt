@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.ActivityCompat
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.adapter.SectionsPagerAdapter
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.RulingRecordMainFragment
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.TradeRecordMainFragment
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.userprofile.ProfileEditFragment
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
@@ -33,7 +34,7 @@ class MainTabActivity : ParentActivity() {
 
         mSectionsPagerAdapter!!.addFragment(ProfileEditFragment())
         mSectionsPagerAdapter!!.addFragment(TradeRecordMainFragment())
-        mSectionsPagerAdapter!!.addFragment()
+        mSectionsPagerAdapter!!.addFragment(RulingRecordMainFragment())
 
         // Set up the ViewPager with the sections adapter.
         view_pager.adapter = mSectionsPagerAdapter

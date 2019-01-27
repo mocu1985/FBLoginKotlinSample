@@ -47,11 +47,6 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        initData()
-    }
-
     override fun onRefresh() {
         binding.swpLayout.isRefreshing = true
         viewModel.multiAdapter.clearItems()

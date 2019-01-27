@@ -22,6 +22,14 @@ public class TimeUtils {
     }
 
     /**
+     * 取得String時間戳
+     * @return
+     */
+    public static String getTimeTemp() {
+        return String.valueOf(System.currentTimeMillis());
+    }
+
+    /**
      * 獲取當天日期
      *
      * @return 獲取時間戳
@@ -77,7 +85,7 @@ public class TimeUtils {
         int h; // 需要更改的小時
         h = c.get(Calendar.HOUR_OF_DAY) - hour;
         c.set(Calendar.HOUR_OF_DAY, h);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Log.v("time", df.format(c.getTime()));
         return df.format(c.getTime());
     }

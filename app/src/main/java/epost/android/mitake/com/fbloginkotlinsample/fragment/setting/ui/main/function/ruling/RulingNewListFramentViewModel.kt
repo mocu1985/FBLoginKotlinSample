@@ -1,4 +1,4 @@
-package epost.android.mitake.com.fbloginkotlinsample.viewmodel
+package epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling
 
 import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.LinearLayoutManager
@@ -7,30 +7,25 @@ import com.baurine.multitypeadapter.MultiTypeAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
-import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeInfo
-import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
-import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeListFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingInfo
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
+import epost.android.mitake.com.fbloginkotlinsample.databinding.RulingNewListFramentFragmentBinding
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.item.FooterItem
-import epost.android.mitake.com.item.HeaderItem
-import epost.android.mitake.com.item.TrustTradeItem
+import epost.android.mitake.com.item.RulingItem
 import mma.security.component.diagnostics.Debuk
 
+class RulingNewListFramentViewModel : ViewModel() {
 
-//class TrustTradeListViewModel : ViewModel(), ParentActivity.ActivityCallBack {
-class TrustTradeListViewModel : ViewModel() {
+    lateinit var binding: RulingNewListFramentFragmentBinding
     val multiAdapter: MultiTypeAdapter = MultiTypeAdapter()
-    private lateinit var headerItem: HeaderItem
-    private lateinit var footerItem: FooterItem
-    lateinit var binding: TrustTradeListFragmentBinding
     lateinit var act: ParentActivity
-    var isDone = false
+    var rulingList = HashMap<String?, RulingObject>()
 
-    var trustTradeList = HashMap<String?, TrustTradeObject>()
 
     fun refreshData() {
-        loadAccountsData(true)
+        loadRulingsData(true)
     }
 
     fun retrieveItems() {
@@ -45,33 +40,29 @@ class TrustTradeListViewModel : ViewModel() {
     }
 
 
-    fun loadAccountsData(isRefresh: Boolean = false) {
+    fun loadRulingsData(isRefresh: Boolean = false) {
         if (multiAdapter.items.size == 0 || isRefresh || GlobalProperties.doRefresh) {
             var mDataRef = FirebaseFirestore.getInstance()
-            mDataRef.collection(GlobalProperties.TRUST_TRADE_ROOT)
-                .document(GlobalProperties.currect_id)
-                .collection(GlobalProperties.TRADING)
-                .whereEqualTo("mainId", GlobalProperties.account.userInfo.uuid)
+            mDataRef.collection(GlobalProperties.RULING_ROOT)
                 .get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        trustTradeList.clear()
+                        rulingList.clear()
                         multiAdapter.clearItems()
-                        Debuk.WriteLine("****", "isDone: " + isDone)
-                        it.getResult()!!.forEach {
+                        it.result!!.forEach {
                             Debuk.WriteLine("*****", it.id + " : " + it.getData())
 
-                            var trustOjb = it.toObject(TrustTradeInfo::class.java)
-                            var tObj = TrustTradeObject(it.id, trustOjb)
-                            if (tObj.trustInfo.orderState != "3" && tObj.trustInfo.orderState != "4" && !isDone)    //進行中
-                                trustTradeList.set(it.id, tObj)
-                            else if (tObj.trustInfo.orderState == "3" && isDone)    //已完成
-                                trustTradeList.set(it.id, tObj)
+                            var rulingInfo = it.toObject(RulingInfo::class.java)
+//                            var tObj = RulingObject(it.id, rulingInfo)
+                            var rObj = RulingObject(rulingInfo)
+
+                            rulingList.set(it.id, rObj)
                         }
 
-                        trustTradeList.forEach {
-                            var trustItem = TrustTradeItem(act, it.key!!, it.value, this)
-                            multiAdapter.addItem(trustItem)
+                        rulingList.forEach {
+                            var rulingItem = RulingItem(it.value)
+//                            var rulingItem = RulingItem(act, it.value)
+                            multiAdapter.addItem(rulingItem)
                         }
 
                         binding.recyView.adapter.notifyDataSetChanged()
@@ -116,12 +107,4 @@ class TrustTradeListViewModel : ViewModel() {
 
     private fun loadMoreData() {
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        when (requestCode) {
-//            GlobalProperties.TRADE_ORDER_DELETE ->
-//                if(resultCode == Activity.RESULT_OK) loadRulingsData(true)
-//        }
-//    }
-
 }

@@ -2,11 +2,11 @@ package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.content.Context
+import android.content.Intent
 import android.databinding.ObservableField
-import com.google.firebase.Timestamp
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.trusttrade.TrustTradeActivity
 import epost.android.mitake.com.kotlinsample.Account
-import mma.security.component.diagnostics.Debuk
 
 class ProfileEditViewModel : ViewModel() {
 
@@ -51,11 +51,7 @@ class ProfileEditViewModel : ViewModel() {
 
 
     fun floatAction() {
-        var time = Timestamp.now()
-        Debuk.WriteLine("*****", time.seconds.toString())
-        Debuk.WriteLine("*****", time.nanoseconds.toString())
-        Debuk.WriteLine("*****", time.toDate().toString())
-//        this.cxt.startActivity(Intent(cxt, TrustTradeActivity::class.java))
+        this.cxt.startActivity(Intent(cxt, TrustTradeActivity::class.java))
     }
 
 }

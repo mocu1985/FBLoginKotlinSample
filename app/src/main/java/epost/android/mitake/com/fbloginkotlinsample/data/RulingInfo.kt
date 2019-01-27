@@ -9,6 +9,14 @@ class RulingInfo : BaseObservable {
 
     constructor()
 
+    @get:Bindable
+    var title: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.title)
+        }
+
+
     //有效期限
     @get:Bindable
     var endTime: String = (Timestamp.now().seconds + 432000L).toString()
@@ -33,20 +41,20 @@ class RulingInfo : BaseObservable {
             notifyPropertyChanged(BR.systemTime)
         }
 
-    //正向得票
+    //正向得票數
     @get:Bindable
-    var positive: Int = 0
+    var positiveCount: Int = 0
         set(value) {
             field = value
-            notifyPropertyChanged(BR.positive)
+            notifyPropertyChanged(BR.positiveCount)
         }
 
-    //負向得票
+    //負向得票數
     @get:Bindable
-    var negative: Int = 0
+    var negativeCount: Int = 0
         set(value) {
             field = value
-            notifyPropertyChanged(BR.negative)
+            notifyPropertyChanged(BR.negativeCount)
         }
 
 }
