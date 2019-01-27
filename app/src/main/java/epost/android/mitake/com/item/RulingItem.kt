@@ -31,7 +31,7 @@ class RulingItem : BaseItem {
     fun getVoteResult(): Int {
         var info = rulingObject.rulingInfo
         var total = info.positiveCount + info.negativeCount
-        return info.positiveCount / total
+        return info.positiveCount * 100 / total
     }
 
     fun getPositivePercent(): String {

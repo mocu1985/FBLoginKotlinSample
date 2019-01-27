@@ -89,20 +89,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <me.zhouzhuo.zzhorizontalprogressbar.ZzHorizontalProgressBar
+        <ProgressBar
             android:id="@+id/vote_progress"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="33dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
+            android:max="100"
+            android:progress="@{item.voteResult}"
             app:layout_constraintBottom_toTopOf="@+id/guideline27"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline25"
-            app:zpb_max="100"
-            app:zpb_show_mode="round_rect"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline25"/>
 
         <TextView
             android:id="@+id/textView6"
