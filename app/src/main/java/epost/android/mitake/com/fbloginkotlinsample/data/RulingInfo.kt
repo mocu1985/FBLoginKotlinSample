@@ -49,6 +49,13 @@ class RulingInfo : BaseObservable {
             notifyPropertyChanged(BR.positiveCount)
         }
 
+    @get:Bindable
+    var positiveList : ArrayList<String> = ArrayList()
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.positiveList)
+    }
+
     //負向得票數
     @get:Bindable
     var negativeCount: Int = 0

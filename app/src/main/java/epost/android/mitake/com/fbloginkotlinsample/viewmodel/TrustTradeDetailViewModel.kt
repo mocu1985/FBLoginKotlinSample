@@ -1,6 +1,5 @@
 package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
-import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -9,14 +8,17 @@ import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingInfo
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TradeToRulingFragment
+import epost.android.mitake.com.fbloginkotlinsample.framework.TitleBarParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.util.JDialog
 import epost.android.mitake.com.fbloginkotlinsample.util.TimeUtils
+import kotlinx.android.synthetic.main.activity_share_titlebar_content.*
 import mma.security.component.diagnostics.Debuk
 
 class TrustTradeDetailViewModel : ViewModel() {
 
     lateinit var order: TrustTradeObject
-    lateinit var act: Activity
+    lateinit var act: TitleBarParentActivity
 
     /**
      * 取消交易
@@ -76,7 +78,18 @@ class TrustTradeDetailViewModel : ViewModel() {
             .addOnSuccessListener {
                 changeRuling()
             }
+    }
 
+
+    fun createRuling() {
+        act.title_bar.centerTextView.setText("申訴建立")
+        act.title_bar.rightTextView.setText("發布")
+        act.title_bar.rightTextView.setOnClickListener {
+            rulingClick()
+        }
+        act.supportFragmentManager.beginTransaction()
+            .replace(R.id.container, TradeToRulingFragment.newInstance())
+            .commitNow()
     }
 
     fun changeRuling() {

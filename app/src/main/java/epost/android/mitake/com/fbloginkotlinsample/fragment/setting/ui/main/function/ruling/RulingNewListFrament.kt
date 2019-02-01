@@ -33,6 +33,10 @@ class RulingNewListFrament : ParentFragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        initData()
+    }
 
     override fun initData() {
         viewModel?.loadRulingsData()

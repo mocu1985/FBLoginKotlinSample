@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TrustTradeDetailFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.framework.TitleBarParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TrustTradeDetailViewModel
 
 //交易紀錄-明細
@@ -27,7 +28,7 @@ class TrustTradeDetailFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(TrustTradeDetailViewModel::class.java)
         viewModel.order = GlobalProperties.trsutObj
-        viewModel.act = activity!!
+        viewModel.act = (activity as TitleBarParentActivity?)!!
         binding.model = viewModel
 
         return binding.root

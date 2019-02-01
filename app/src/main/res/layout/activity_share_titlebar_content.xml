@@ -12,13 +12,15 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        titlebar:leftType="imageButton"
-        titlebar:leftImageResource="@drawable/ic_go_back"
         titlebar:centerText="@string/trust_trade_title"
         titlebar:centerTextColor="#000000"
         titlebar:centerType="textView"
         titlebar:layout_constraintBottom_toTopOf="@+id/container"
         titlebar:layout_constraintTop_toTopOf="parent"
+        titlebar:leftImageResource="@drawable/ic_go_back"
+        titlebar:leftType="imageButton"
+        titlebar:rightTextColor="#000000"
+        titlebar:rightType="textView"
         titlebar:titleBarColor="@color/com_facebook_messenger_blue"/>
 
 

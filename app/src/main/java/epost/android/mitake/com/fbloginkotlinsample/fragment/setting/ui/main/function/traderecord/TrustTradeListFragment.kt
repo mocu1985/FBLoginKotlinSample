@@ -30,6 +30,11 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        initData()
+    }
+
     override fun initData() {
         viewModel?.loadAccountsData()
     }

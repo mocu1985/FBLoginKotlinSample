@@ -315,7 +315,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@color/background_red"
-                android:onClick="@{() -> model.rulingClick()}"
+                android:onClick="@{() -> model.createRuling()}"
                 android:text="交易申訴"
                 android:textColor="@color/text_white"
                 android:visibility="@{model.checkRulingBtnUI()? View.VISIBLE : View.GONE}"/>
