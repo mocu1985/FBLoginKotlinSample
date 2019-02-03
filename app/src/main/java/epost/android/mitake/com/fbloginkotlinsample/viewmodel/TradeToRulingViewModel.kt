@@ -6,6 +6,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingDetailObject
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingInfo
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TradeToRulingFragmentBinding
@@ -27,7 +28,7 @@ class TradeToRulingViewModel : ViewModel() {
         //TODO Functions 修改狀態變成申訴單
         var rulingInfo = RulingInfo()
         rulingInfo.title = order.trustInfo.tradeTitle
-        rulingInfo.detail = rulingContent.get().toString()
+        rulingInfo.detailList.add(RulingDetailObject(rulingContent.get()!!))
         rulingInfo.endTime = TimeUtils.getLongTime(72)
         rulingInfo.systemTime = Timestamp.now()
         rulingInfo.orderId = order.orderId

@@ -17,6 +17,7 @@
         android:layout_height="150dp"
         android:layout_marginBottom="5dp"
         android:background="@color/background_green"
+        android:onClick="@{item.onClickListener}"
         android:paddingTop="5dp">
 
         <android.support.constraint.Guideline

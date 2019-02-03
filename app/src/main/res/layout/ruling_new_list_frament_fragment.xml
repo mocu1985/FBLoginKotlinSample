@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.RulingNewListFramentViewModel"></variable>
+            type="epost.android.mitake.com.fbloginkotlinsample.viewmodel.RulingNewListFramentViewModel"></variable>
     </data>
 
     <FrameLayout

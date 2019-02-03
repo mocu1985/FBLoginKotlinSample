@@ -10,6 +10,7 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.databinding.RulingNewListFramentFragmentBinding
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.RulingNewListFramentViewModel
 
 class RulingNewListFrament : ParentFragment() {
     companion object {

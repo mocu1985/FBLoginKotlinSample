@@ -1,5 +1,7 @@
 package epost.android.mitake.com.item
 
+import android.util.Log
+import android.view.View
 import epost.android.mitake.com.fbloginkotlinsample.BR
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
@@ -12,6 +14,9 @@ class RulingItem : BaseItem {
 
     constructor(rulingObject: RulingObject) {
         this.rulingObject = rulingObject
+        onClickListener = View.OnClickListener {
+            Log.d("*****", "item click")
+        }
     }
 
     constructor(act: ParentActivity, rulingObject: RulingObject) {

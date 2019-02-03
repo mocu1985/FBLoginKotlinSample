@@ -16,15 +16,8 @@ class RulingInfo : BaseObservable {
             notifyPropertyChanged(BR.title)
         }
 
-    @get:Bindable
-    var detail: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.detail)
-        }
 
-
-    //有效期限
+    //有效期限  12小時後
     @get:Bindable
     var endTime: String = (Timestamp.now().seconds + 432000L).toString()
         set(value) {
@@ -56,6 +49,7 @@ class RulingInfo : BaseObservable {
             notifyPropertyChanged(BR.positiveCount)
         }
 
+    //正向留言清單
     @get:Bindable
     var positiveList : ArrayList<String> = ArrayList()
     set(value) {
@@ -70,5 +64,21 @@ class RulingInfo : BaseObservable {
             field = value
             notifyPropertyChanged(BR.negativeCount)
         }
+
+    //負向留言清單
+    @get:Bindable
+    var negativeList : ArrayList<String> = ArrayList()
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.negativeList)
+        }
+
+    //申訴舉證清單
+    @get:Bindable
+    var detailList : ArrayList<RulingDetailObject> = ArrayList()
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.detailList)
+    }
 
 }
