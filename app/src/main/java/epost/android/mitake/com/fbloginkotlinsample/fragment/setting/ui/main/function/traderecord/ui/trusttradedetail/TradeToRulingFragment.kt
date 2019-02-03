@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.databinding.TradeToRulingFragmentBinding
+import epost.android.mitake.com.fbloginkotlinsample.viewmodel.TradeToRulingViewModel
+import kotlinx.android.synthetic.main.activity_share_titlebar_content.*
 
 class TradeToRulingFragment : Fragment() {
 
@@ -23,6 +25,15 @@ class TradeToRulingFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.trade_to_ruling_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(TradeToRulingViewModel::class.java)
 
+        viewModel.binding = binding
+        viewModel.act = activity as TrustTradeDetailActivity
+
+
+        viewModel.act.title_bar.rightTextView.setOnClickListener {
+            viewModel.postRuling()
+        }
+
+        binding.model = viewModel
 
         return binding.root
     }

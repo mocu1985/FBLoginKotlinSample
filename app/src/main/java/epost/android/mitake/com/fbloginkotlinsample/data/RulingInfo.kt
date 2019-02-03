@@ -16,6 +16,13 @@ class RulingInfo : BaseObservable {
             notifyPropertyChanged(BR.title)
         }
 
+    @get:Bindable
+    var detail: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.detail)
+        }
+
 
     //有效期限
     @get:Bindable

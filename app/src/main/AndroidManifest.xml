@@ -31,22 +31,32 @@
                 <data android:scheme="@string/fb_login_protocol_scheme"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".framework.FragmentParentActivity">
+        <activity
+            android:name=".framework.FragmentParentActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".fragment.setting.ui.main.MainTabActivity"
-            android:label="@string/title_activity_main_tab">
+            android:label="@string/title_activity_main_tab"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".fragment.setting.ui.main.function.trusttrade.TrustTradeActivity">
+        <activity
+            android:name=".fragment.setting.ui.main.function.trusttrade.TrustTradeActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailActivity">
+        <activity
+            android:name=".fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailActivity"
+            android:screenOrientation="portrait"
+            >
         </activity>
     </application>
 

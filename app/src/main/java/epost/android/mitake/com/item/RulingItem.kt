@@ -31,18 +31,27 @@ class RulingItem : BaseItem {
     fun getVoteResult(): Int {
         var info = rulingObject.rulingInfo
         var total = info.positiveCount + info.negativeCount
+        if (total == 0) {
+            return 0
+        }
         return info.positiveCount * 100 / total
     }
 
     fun getPositivePercent(): String {
         var info = rulingObject.rulingInfo
         var total = info.positiveCount + info.negativeCount
+        if (total == 0) {
+            return "0%"
+        }
         return (info.positiveCount * 100 / total).toString() + "%"
     }
 
     fun getNagativePercent(): String {
         var info = rulingObject.rulingInfo
         var total = info.positiveCount + info.negativeCount
+        if (total == 0) {
+            return "0%"
+        }
         return (info.negativeCount * 100 / total).toString() + "%"
     }
 
