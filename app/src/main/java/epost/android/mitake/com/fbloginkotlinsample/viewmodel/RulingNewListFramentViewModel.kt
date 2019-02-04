@@ -60,7 +60,7 @@ class RulingNewListFramentViewModel : ViewModel() {
                         }
 
                         rulingList.forEach {
-                            var rulingItem = RulingItem(it.value)
+                            var rulingItem = RulingItem(act, it.value)
 //                            var rulingItem = RulingItem(act, it.value)
                             multiAdapter.addItem(rulingItem)
                         }

@@ -55,8 +55,11 @@
         </activity>
         <activity
             android:name=".fragment.setting.ui.main.function.traderecord.ui.trusttradedetail.TrustTradeDetailActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".fragment.setting.ui.main.function.ruling.RulingDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

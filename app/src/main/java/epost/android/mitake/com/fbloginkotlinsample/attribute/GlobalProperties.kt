@@ -1,5 +1,6 @@
 package epost.android.mitake.com.fbloginkotlinsample.attribute
 
+import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
 import epost.android.mitake.com.fbloginkotlinsample.data.TrustTradeObject
 import epost.android.mitake.com.kotlinsample.Account
 
@@ -10,6 +11,7 @@ class GlobalProperties {
         lateinit var account: Account
 
         lateinit var trsutObj: TrustTradeObject
+        lateinit var rulingObj: RulingObject    //當前選取申訴單
 
         var doRefresh = false   //是否需要刷新交易清單
 
