@@ -4,14 +4,18 @@ import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.content.Intent
 import android.databinding.ObservableField
+import android.view.View
+import android.widget.AdapterView
+import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.trusttrade.TrustTradeActivity
-import epost.android.mitake.com.kotlinsample.Account
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.userprofile.myruling.MyRulingActivity
 
 class ProfileEditViewModel : ViewModel() {
 
     lateinit var cxt: Context;
-    lateinit var account: Account
+    lateinit var binding: FragmentProfileEditBinding
+    var account = GlobalProperties.account
     var isEdit: ObservableField<Boolean> = ObservableField(false)
 
 
@@ -52,6 +56,18 @@ class ProfileEditViewModel : ViewModel() {
 
     fun floatAction() {
         this.cxt.startActivity(Intent(cxt, TrustTradeActivity::class.java))
+    }
+
+    fun addItemClick() {
+        binding.itemList.onItemClickListener = object : AdapterView.OnItemClickListener {
+            override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when (position){
+                    0 -> return
+                    1 -> cxt.startActivity(Intent(cxt, MyRulingActivity::class.java))
+                }
+            }
+
+        }
     }
 
 }

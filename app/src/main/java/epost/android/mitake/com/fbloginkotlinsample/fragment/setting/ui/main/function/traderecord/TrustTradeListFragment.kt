@@ -32,7 +32,7 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
 
     override fun onResume() {
         super.onResume()
-        initData()
+//        initData()
     }
 
     override fun initData() {
@@ -48,6 +48,7 @@ class TrustTradeListFragment : ParentFragment(), SwipeRefreshLayout.OnRefreshLis
         viewModel.act = (activity as ParentActivity?)!!
 
         viewModel.initView()
+        initData()
 
         return binding.root
     }

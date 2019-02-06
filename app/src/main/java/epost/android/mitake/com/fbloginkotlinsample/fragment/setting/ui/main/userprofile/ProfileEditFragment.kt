@@ -4,28 +4,22 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import epost.android.mitake.com.fbloginkotlinsample.R
-import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.databinding.FragmentProfileEditBinding
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.ProfileEditViewModel
 
 /**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [ProfileEditFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [ProfileEditFragment.newInstance] factory method to
- * create an instance of this fragment.
- *
+ *個人資訊
  */
 class ProfileEditFragment : ParentFragment() {
     lateinit var viewModel: ProfileEditViewModel
     lateinit var binding: FragmentProfileEditBinding
+    val items = arrayOf("我的交易", "我的申訴單")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +36,18 @@ class ProfileEditFragment : ParentFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_edit, container, false)
         viewModel = ViewModelProviders.of(this).get(ProfileEditViewModel::class.java)
 
-        viewModel.cxt = context!!
-        viewModel.account = GlobalProperties.account
         binding.model = viewModel
+        viewModel.cxt = context!!
+        viewModel.binding = binding
+
+        addItem()
 
         return binding.root
+    }
+
+    private fun addItem() {
+        binding.itemList.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, items)
+        viewModel.addItemClick()
     }
 
 

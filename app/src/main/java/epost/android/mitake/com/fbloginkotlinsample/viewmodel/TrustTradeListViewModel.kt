@@ -1,6 +1,7 @@
 package epost.android.mitake.com.fbloginkotlinsample.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableBoolean
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.baurine.multitypeadapter.MultiTypeAdapter
@@ -26,6 +27,8 @@ class TrustTradeListViewModel : ViewModel() {
     lateinit var binding: TrustTradeListFragmentBinding
     lateinit var act: ParentActivity
     var isDone = false
+    var isEmpty: ObservableBoolean = ObservableBoolean(true)
+
 
     var trustTradeList = HashMap<String?, TrustTradeObject>()
 
@@ -38,10 +41,6 @@ class TrustTradeListViewModel : ViewModel() {
 
     private fun addDataItems(count: Int) {
 
-    }
-
-    fun isEmpty(): Boolean {
-        return multiAdapter.items.isEmpty()
     }
 
 
@@ -72,12 +71,14 @@ class TrustTradeListViewModel : ViewModel() {
                         trustTradeList.forEach {
                             var trustItem = TrustTradeItem(act, it.key!!, it.value, this)
                             multiAdapter.addItem(trustItem)
+                            isEmpty.set(false)
                         }
 
                         binding.recyView.adapter.notifyDataSetChanged()
                     } else {
                         JDialog.showDialog(act!!, act.getString(R.string.alt_hint), "查無資料")
                         multiAdapter.addItem(FooterItem().setState(FooterItem.ERROR))
+                        isEmpty.set(true)
                     }
 
                     binding.swpLayout.isRefreshing = false

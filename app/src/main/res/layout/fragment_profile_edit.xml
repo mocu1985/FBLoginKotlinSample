@@ -130,8 +130,8 @@
             app:layout_constraintTop_toTopOf="@+id/guideline7"/>
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_view"
+        <ListView
+            android:id="@+id/item_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"

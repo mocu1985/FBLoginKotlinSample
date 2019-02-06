@@ -26,11 +26,6 @@ class RulingDetailActivity : TitleBarParentActivity(), ViewPager.OnPageChangeLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, RulingDetailFragment.newInstance())
-//                .commitNow()
-//        }
 
         container.visibility = View.GONE
 

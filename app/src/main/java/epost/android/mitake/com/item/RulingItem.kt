@@ -1,5 +1,6 @@
 package epost.android.mitake.com.item
 
+import android.app.Activity
 import android.content.Intent
 import android.view.View
 import epost.android.mitake.com.fbloginkotlinsample.BR
@@ -7,14 +8,13 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.data.RulingObject
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.RulingDetailActivity
-import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 
 class RulingItem : BaseItem {
 
-    private lateinit var act: ParentActivity
+    private lateinit var act: Activity
     var rulingObject: RulingObject
 
-    constructor(act: ParentActivity, rulingObject: RulingObject) {
+    constructor(act: Activity, rulingObject: RulingObject) {
         this.act = act
         this.rulingObject = rulingObject
         onClickListener = View.OnClickListener {

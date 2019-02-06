@@ -61,6 +61,8 @@
             android:name=".fragment.setting.ui.main.function.ruling.RulingDetailActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".fragment.setting.ui.main.userprofile.myruling.MyRulingActivity">
+        </activity>
     </application>
 
 </manifest>

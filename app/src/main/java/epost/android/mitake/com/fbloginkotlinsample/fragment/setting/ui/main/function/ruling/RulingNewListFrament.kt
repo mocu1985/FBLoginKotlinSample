@@ -12,6 +12,7 @@ import epost.android.mitake.com.fbloginkotlinsample.framework.ParentActivity
 import epost.android.mitake.com.fbloginkotlinsample.framework.ParentFragment
 import epost.android.mitake.com.fbloginkotlinsample.viewmodel.RulingNewListFramentViewModel
 
+//申訴單清單
 class RulingNewListFrament : ParentFragment() {
     companion object {
 
@@ -30,13 +31,14 @@ class RulingNewListFrament : ParentFragment() {
         viewModel.act = (activity as ParentActivity?)!!
 
         viewModel.initView()
+        initData()
 
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        initData()
+//        initData()
     }
 
     override fun initData() {
