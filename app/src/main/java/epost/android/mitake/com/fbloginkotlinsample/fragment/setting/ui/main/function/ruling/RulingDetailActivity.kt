@@ -11,6 +11,7 @@ import epost.android.mitake.com.fbloginkotlinsample.R
 import epost.android.mitake.com.fbloginkotlinsample.adapter.RulingDetailAdapter
 import epost.android.mitake.com.fbloginkotlinsample.attribute.GlobalProperties
 import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ui.rulingdetail.RulingDetailFragment
+import epost.android.mitake.com.fbloginkotlinsample.fragment.setting.ui.main.function.ruling.ui.rulingdetail.RulingVoteFragment
 import epost.android.mitake.com.fbloginkotlinsample.framework.TitleBarParentActivity
 import kotlinx.android.synthetic.main.activity_share_titlebar_content.*
 
@@ -22,6 +23,17 @@ class RulingDetailActivity : TitleBarParentActivity(), ViewPager.OnPageChangeLis
 
     override fun initTitleBar() {
         title_bar.centerTextView.text = "申訴明細"
+        title_bar.rightTextView.text = "仲裁投票"
+
+        title_bar.rightTextView.setOnClickListener {
+            view_pager.visibility = View.GONE
+            points.visibility = View.GONE
+            container.visibility = View.VISIBLE
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, RulingVoteFragment.newInstance())
+                .commitNow()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +55,8 @@ class RulingDetailActivity : TitleBarParentActivity(), ViewPager.OnPageChangeLis
             fragmentList.add(RulingDetailFragment(index))
             index++
         }
+
+        checkShowVote(fragmentList)
 
         var adapter = RulingDetailAdapter(supportFragmentManager, fragmentList)
         view_pager.adapter = adapter
@@ -73,6 +87,11 @@ class RulingDetailActivity : TitleBarParentActivity(), ViewPager.OnPageChangeLis
 
     }
 
+    private fun checkShowVote(fragmentList: ArrayList<Fragment>) {
+        title_bar.rightTextView.visibility =
+                if (fragmentList.size == 1) View.VISIBLE else View.INVISIBLE
+    }
+
     override fun onPageScrollStateChanged(state: Int) {
     }
 
@@ -87,6 +106,11 @@ class RulingDetailActivity : TitleBarParentActivity(), ViewPager.OnPageChangeLis
                 ivPoints[i]!!.setBackgroundResource(R.drawable.other_dots)
             }
         }
-    }
 
+        if (position == ivPoints.size - 1) {
+            title_bar.rightTextView.visibility = View.VISIBLE
+        } else {
+            title_bar.rightTextView.visibility = View.INVISIBLE
+        }
+    }
 }

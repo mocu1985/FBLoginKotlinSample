@@ -7,4 +7,6 @@
     <color name="text_white">#FFFFFF</color>
     <color name="background_red">#E92228</color>
     <color name="background_green">#60DF60</color>
+    <color name="bar_pressed_black50">#50000000</color>
+    <color name="bar_pressed_black0">#00000000</color>
 </resources>

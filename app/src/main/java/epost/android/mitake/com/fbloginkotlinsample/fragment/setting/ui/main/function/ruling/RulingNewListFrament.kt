@@ -19,6 +19,7 @@ class RulingNewListFrament : ParentFragment() {
 
         fun newInstance() = RulingNewListFrament()
     }
+
     private lateinit var viewModel: RulingNewListFramentViewModel
 
     private lateinit var binding: RulingNewListFramentFragmentBinding
@@ -42,6 +43,7 @@ class RulingNewListFrament : ParentFragment() {
     }
 
     override fun initData() {
+        //TODO 當機異常處理
         viewModel?.loadRulingsData()
     }
 
